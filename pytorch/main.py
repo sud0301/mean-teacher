@@ -86,8 +86,10 @@ def main(context):
 
     if args.evaluate:
         LOG.info("Evaluating the primary model:")
+        print ("Evaluating the primary model:")
         validate(eval_loader, model, validation_log, global_step, args.start_epoch)
         LOG.info("Evaluating the EMA model:")
+        print ("Evaluating the EMA model:")
         validate(eval_loader, ema_model, ema_validation_log, global_step, args.start_epoch)
         return
 
@@ -100,8 +102,10 @@ def main(context):
         if args.evaluation_epochs and (epoch + 1) % args.evaluation_epochs == 0:
             start_time = time.time()
             LOG.info("Evaluating the primary model:")
+            print ("Evaluating the primary model:")
             prec1 = validate(eval_loader, model, validation_log, global_step, epoch + 1)
             LOG.info("Evaluating the EMA model:")
+            print ("Evaluating the EMA model:")
             ema_prec1 = validate(eval_loader, ema_model, ema_validation_log, global_step, epoch + 1)
             LOG.info("--- validation in %s seconds ---" % (time.time() - start_time))
             is_best = ema_prec1 > best_prec1
@@ -342,6 +346,14 @@ def validate(eval_loader, model, log, global_step, epoch):
 
         if i % args.print_freq == 0:
             LOG.info(
+                'Test: [{0}/{1}]\t'
+                'Time {meters[batch_time]:.3f}\t'
+                'Data {meters[data_time]:.3f}\t'
+                'Class {meters[class_loss]:.4f}\t'
+                'Prec@1 {meters[top1]:.3f}\t'
+                'Prec@5 {meters[top5]:.3f}'.format(
+                    i, len(eval_loader), meters=meters))
+            print (
                 'Test: [{0}/{1}]\t'
                 'Time {meters[batch_time]:.3f}\t'
                 'Data {meters[data_time]:.3f}\t'

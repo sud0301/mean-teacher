@@ -1,0 +1,23 @@
+/home/mittal/.bashrc: Zeile 65: bind: Warnung: Zeileneditierung ist nicht aktiviert.
+/home/mittal/.bashrc: Zeile 66: bind: Warnung: Zeileneditierung ist nicht aktiviert.
+/home/mittal/.bashrc: Zeile 65: bind: Warnung: Zeileneditierung ist nicht aktiviert.
+/home/mittal/.bashrc: Zeile 66: bind: Warnung: Zeileneditierung ist nicht aktiviert.
+Using these command line args: --workers 20 --dataset imagenet --consistency-rampup 5 --ema-decay 0.9997 --lr 0.1 --initial-lr 0.1 --labels data-local/labels/ilsvrc2012/128000_balanced_labels/00.txt --weight-decay 5e-05 --epochs 60 --logit-distance-cost 0.01 --consistency-type kl --nesterov True --lr-rampup 2 --exclude-unlabeled False --evaluation-epochs 1 --consistency 10.0 --checkpoint-epochs 1 --batch-size 160 --lr-rampdown-epochs 75 --labeled-batch-size 80 --arch resnext152
+Traceback (most recent call last):
+  File "/usr/lib/python3.5/runpy.py", line 184, in _run_module_as_main
+    "__main__", mod_spec)
+  File "/usr/lib/python3.5/runpy.py", line 85, in _run_code
+    exec(code, run_globals)
+  File "/misc/lmbraid19/mittal/dense_prediction/cloned/mean-teacher/pytorch/experiments/imagenet_valid.py", line 75, in <module>
+    run(**run_params)
+  File "/misc/lmbraid19/mittal/dense_prediction/cloned/mean-teacher/pytorch/experiments/imagenet_valid.py", line 70, in run
+    main.main(context)
+  File "/misc/lmbraid19/mittal/dense_prediction/cloned/mean-teacher/pytorch/main.py", line 43, in main
+    train_loader, eval_loader = create_data_loaders(**dataset_config, args=args)
+  File "/misc/lmbraid19/mittal/dense_prediction/cloned/mean-teacher/pytorch/main.py", line 154, in create_data_loaders
+    dataset = torchvision.datasets.ImageFolder(traindir, train_transformation)
+  File "/home/mittal/.virtualenvs/apple/lib/python3.5/site-packages/torchvision/datasets/folder.py", line 99, in __init__
+    classes, class_to_idx = find_classes(root)
+  File "/home/mittal/.virtualenvs/apple/lib/python3.5/site-packages/torchvision/datasets/folder.py", line 24, in find_classes
+    classes = [d for d in os.listdir(dir) if os.path.isdir(os.path.join(dir, d))]
+FileNotFoundError: [Errno 2] No such file or directory: 'data-local/images/ilsvrc2012/train'
