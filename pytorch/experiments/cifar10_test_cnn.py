@@ -5,7 +5,7 @@ import logging
 
 import torch
 
-import main
+import main_cnn
 from mean_teacher.cli import parse_dict_args
 from mean_teacher.run_context import RunContext
 
@@ -35,15 +35,16 @@ def parameters():
         # Costs
         'consistency_type': 'mse',
         'consistency_rampup': 5,
-        'consistency': 100.0,
+        'consistency': 10.0,
         'logit_distance_cost': -0.00025,
         'weight_decay': 2e-4,
+        'percent': 0.3,
 
         # Optimization
         'lr_rampup': 0,
-        'base_lr': 0.05,
+        'base_lr': 0.0005,
         'nesterov': True,
-        'exclude_unlabeled': True,
+        #'exclude_unlabeled': True,
     }
 
     # 4000 labels:
@@ -79,13 +80,13 @@ def run(title, base_batch_size, base_labeled_batch_size, base_lr, n_labels, data
 
     adapted_args = {
         'batch_size': base_batch_size * ngpu,
-        #'labeled_batch_size': base_labeled_batch_size * ngpu,
+        'labeled_batch_size': base_labeled_batch_size * ngpu,
         'lr': base_lr * ngpu,
         'labels': 'data-local/labels/cifar10/{}_balanced_labels/{:02d}.txt'.format(n_labels, data_seed),
     }
     context = RunContext(__file__, "{}_{}".format(n_labels, data_seed))
-    main.args = parse_dict_args(**adapted_args, **kwargs)
-    main.main(context)
+    main_cnn.args = parse_dict_args(**adapted_args, **kwargs)
+    main_cnn.main(context)
 
 
 if __name__ == "__main__":

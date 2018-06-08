@@ -8,7 +8,9 @@ from torch.nn import functional as F
 from torch.autograd import Variable, Function
 
 from .utils import export, parameter_count
-
+import torch.utils.model_zoo as model_zoo
+#import resnext_101_64x4d 
+from resnext import *
 
 @export
 def cifar_shakeshake26(pretrained=False, **kwargs):
@@ -28,9 +30,28 @@ def resnext152(pretrained=False, **kwargs):
                           channels=32 * 4,
                           groups=32,
                           downsample='basic', **kwargs)
+    '''
+    model = resnext101_64x4d(pretrained='imagenet')  
+    model.last_linear = nn.Linear(2048, 10)
+    model = nn.DataParallel(model).cuda()
+    #model = resnext_101_64x4d.resnext_101_64x4d 
+    #model.load_state_dict(torch.load('resnext_101_64x4d.pth'))
+    '''
     return model
 
 
+@export
+def resnext101(pretrained=False, **kwargs):
+    assert not pretrained
+    model = ResNet224x224(BottleneckBlock,
+                          layers=[3, 4, 23, 3],
+                          channels=32*8,
+                          groups=32,
+                          downsample='basic', **kwargs)
+        
+    model.load_state_dict(model_zoo.load_url('http://data.lip6.fr/cadene/pretrainedmodels/resnext101_64x4d-e77a0586.pth')) 
+    
+    return model
 
 class ResNet224x224(nn.Module):
     def __init__(self, block, layers, channels, groups=1, num_classes=1000, downsample='basic'):
@@ -38,6 +59,20 @@ class ResNet224x224(nn.Module):
         assert len(layers) == 4
         self.downsample_mode = downsample
         self.inplanes = 64
+        
+        self.features = nn.Sequential( 
+            nn.Conv2d(3, self.inplanes, kernel_size=7, stride=2, padding=3, bias=False),
+            nn.BatchNorm2d(self.inplanes),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(kernel_size=3, stride=2, padding=1),
+            self._make_layer(block, channels, groups, layers[0]),
+            self._make_layer(block, channels * 2, groups, layers[1], stride=2),
+            self._make_layer(block, channels * 4, groups, layers[2], stride=2),
+            self._make_layer(block, channels * 8, groups, layers[3], stride=2),
+            )
+        self.avgpool = nn.AvgPool2d(7)
+        self.fc1 = nn.Linear(block.out_channels(channels * 8, groups), num_classes)
+        '''
         self.conv1 = nn.Conv2d(3, self.inplanes, kernel_size=7, stride=2, padding=3,
                                bias=False)
         self.bn1 = nn.BatchNorm2d(self.inplanes)
@@ -53,9 +88,9 @@ class ResNet224x224(nn.Module):
         self.avgpool = nn.AvgPool2d(7)
         self.fc1 = nn.Linear(block.out_channels(
             channels * 8, groups), num_classes)
-        self.fc2 = nn.Linear(block.out_channels(
-            channels * 8, groups), num_classes)
-
+        #self.fc2 = nn.Linear(block.out_channels(
+            #channels * 8, groups), num_classes)
+        '''
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 n = m.kernel_size[0] * m.kernel_size[1] * m.out_channels
@@ -88,6 +123,7 @@ class ResNet224x224(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
+        '''
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.relu(x)
@@ -95,10 +131,12 @@ class ResNet224x224(nn.Module):
         x = self.layer1(x)
         x = self.layer2(x)
         x = self.layer3(x)
-        x = self.layer4(x)
+        x = self.layer4(x) 
+        '''
+        x = self.features(x)
         x = self.avgpool(x)
         x = x.view(x.size(0), -1)
-        return self.fc1(x), self.fc2(x)
+        return self.fc1(x) #, self.fc2(x)
 
 
 class ResNet32x32(nn.Module):

@@ -23,6 +23,8 @@ from mean_teacher.utils import *
 
 import pretrainedmodels
 
+import resnext_101_64x4d 
+
 LOG = logging.getLogger('main')
 
 args = None
@@ -48,20 +50,36 @@ def main(context):
             pretrained='pre-trained ' if args.pretrained else '',
             ema='EMA ' if ema else '',
             arch=args.arch))
-        
+       
+        ''' 
+        model = resnext_101_64x4d.resnext_101_64x4d
+        model.load_state_dict(torch.load('resnext_101_64x4d.pth'))
+        model.eval() 
+        #model = torch.load('resnext_101_64x4d.pth')
+        #model.load_state_dict(checkpoint['state_dict'])   
+        #model.cuda()
+        #model = torch.load
+        #torch.load('resnext_101_64x4d.pth')['state_dict']       
+        #model = torch.nn.DataParallel(model).cuda()
+        model.cuda()
+       
         model_factory = architectures.__dict__[args.arch]
         model_params = dict(pretrained=args.pretrained, num_classes=num_classes)
         model = model_factory(**model_params)
-        model = nn.DataParallel(model).cuda()
-        
+        #model = nn.DataParallel(model).cuda()
+        model.cuda()
+        '''
+        '''
         #model_name = 'resnext50_32x4d'
         ''' 
-        model_name = 'resnext101_64x4d'
+        #model_name = 'resnext101_64x4d'
+        #model_name = 'inceptionresnetv2'
+        model_name = 'resnet18'
         model = pretrainedmodels.__dict__[model_name](num_classes=1000, pretrained=None)
-        model.last_linear = nn.Linear(2048, 10)
+        model.last_linear = nn.Linear(512, 10)
         model = torch.nn.DataParallel(model).cuda()
         #cudnn.benchmark = False
-        '''
+        
 
         if ema:
             for param in model.parameters():
@@ -74,13 +92,12 @@ def main(context):
 
     LOG.info(parameters_string(model))
 
-    
     optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), args.lr,
                                 momentum=args.momentum,
                                 weight_decay=args.weight_decay,
                                 nesterov=args.nesterov)
     '''
-    optimizer = torch.optim.SGD(model.parameters(), args.lr,
+    optimizer = torch.optim.SGD(list(model.parameters()), args.lr,
                                 momentum=args.momentum,
                                 weight_decay=args.weight_decay,
                                 nesterov=args.nesterov)
@@ -225,7 +242,8 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
     ema_model.train()
 
     end = time.time()
-    print ('lr: ', optimizer.param_groups[0]['lr'])
+    #print ('lr: ', optimizer.param_groups[0]['lr'])
+    #for i, ((input, ema_input), target) in enumerate(train_loader):
     for i, ((input, ema_input), target) in enumerate(train_loader):
         # measure data loading time
         meters.update('data_time', time.time() - end)
@@ -281,7 +299,7 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
             consistency_loss = 0
             meters.update('cons_loss', 0)
 
-        loss = class_loss #+ consistency_loss + res_loss
+        loss = class_loss + consistency_loss #+ res_loss
         assert not (np.isnan(loss.data[0]) or loss.data[0] > 1e5), 'Loss explosion: {}'.format(loss.data[0])
         meters.update('loss', loss.data[0])
 
@@ -346,11 +364,11 @@ def validate(eval_loader, model, log, global_step, epoch):
         meters.update('labeled_minibatch_size', labeled_minibatch_size)
 
         # compute output
-        #output1  = model(input_var)
-        #softmax1 = F.softmax(output1, dim=1)
+        output1  = model(input_var)
+        softmax1 = F.softmax(output1, dim=1)
         
-        output1, output2 = model(input_var)
-        softmax1, softmax2 = F.softmax(output1, dim=1), F.softmax(output2, dim=1)    
+        #output1, output2 = model(input_var)
+        #softmax1, softmax2 = F.softmax(output1, dim=1), F.softmax(output2, dim=1)    
     
         class_loss = class_criterion(output1, target_var) / minibatch_size
 

@@ -71,7 +71,40 @@ class TransformTwice:
         out2 = self.transform(inp)
         return out1, out2
 
+def change_labels (dataset, data_path, label_filename):
+    label_filepath = os.path.join(data_path, label_filename)
+    labels = np.loadtxt(label_filepath, dtype=np.int64)
+    
+    for idx in range(len(dataset.imgs)):
+        path, _ = dataset.imgs[idx]
+        dataset.imgs[idx] = path, labels[idx]
+       
+    return dataset, labels 
 
+def relabel_dataset_ml(dataset, labels):
+    
+    indices = np.arange(len(dataset.imgs))
+    np.random.shuffle(indices)
+    mask = np.zeros(indices.shape[0], dtype=np.bool)
+    select_ind = np.random.choice(indices, 440, replace=False)
+    mask[select_ind]= True
+
+    labeled_indices, unlabeled_indices = indices[mask], indices[~mask]
+    
+    for idx in range(len(dataset.imgs)):
+        path , _ = dataset.imgs[idx]    
+        if idx in labeled_indices:
+            dataset.imgs[idx] = path, labels[idx]
+        elif idx in unlabeled_indices:
+            labels[idx][0] = NO_LABEL
+            dataset.imgs[idx] = path, labels[idx] 
+        #print (dataset.imgs[idx])
+    
+    #labeled_indices = sorted(set(labeled_indices))
+    #unlabeled_indices = sorted(set(unlabeled_indices))
+
+    return labeled_indices, unlabeled_indices
+    
 def relabel_dataset(dataset, labels):
     unlabeled_idxs = []
     for idx in range(len(dataset.imgs)):

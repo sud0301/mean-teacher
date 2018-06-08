@@ -49,6 +49,8 @@ def create_parser():
                         help='length of learning rate cosine rampdown (>= length of training)')
     parser.add_argument('--momentum', default=0.9, type=float, metavar='M',
                         help='momentum')
+    parser.add_argument('--percent', default=0.3, type=float, metavar='M',
+                        help='percent')
     parser.add_argument('--nesterov', default=False, type=str2bool,
                         help='use nesterov momentum', metavar='BOOL')
     parser.add_argument('--weight-decay', '--wd', default=1e-4, type=float,

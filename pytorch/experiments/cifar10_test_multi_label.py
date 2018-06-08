@@ -5,7 +5,7 @@ import logging
 
 import torch
 
-import main
+import main_multi_label
 from mean_teacher.cli import parse_dict_args
 from mean_teacher.run_context import RunContext
 
@@ -30,20 +30,19 @@ def parameters():
 
         # Architecture
         #'arch': 'cifar_shakeshake26',
-        'arch': 'resnext101',
+        'arch': 'resnext152',
 
         # Costs
         'consistency_type': 'mse',
         'consistency_rampup': 5,
         'consistency': 100.0,
-        'logit_distance_cost': -0.00025,
+        'logit_distance_cost': .01,
         'weight_decay': 2e-4,
 
         # Optimization
         'lr_rampup': 0,
         'base_lr': 0.05,
         'nesterov': True,
-        'exclude_unlabeled': True,
     }
 
     # 4000 labels:
@@ -51,7 +50,7 @@ def parameters():
         yield {
             **defaults,
             'title': '4000-label cifar-10',
-            'n_labels': 4000,
+            'n_labels': 50000,
             'data_seed': data_seed,
             'epochs': 300,
             'lr_rampdown_epochs': 350,
@@ -79,13 +78,13 @@ def run(title, base_batch_size, base_labeled_batch_size, base_lr, n_labels, data
 
     adapted_args = {
         'batch_size': base_batch_size * ngpu,
-        #'labeled_batch_size': base_labeled_batch_size * ngpu,
+        'labeled_batch_size': base_labeled_batch_size * ngpu,
         'lr': base_lr * ngpu,
         'labels': 'data-local/labels/cifar10/{}_balanced_labels/{:02d}.txt'.format(n_labels, data_seed),
     }
     context = RunContext(__file__, "{}_{}".format(n_labels, data_seed))
-    main.args = parse_dict_args(**adapted_args, **kwargs)
-    main.main(context)
+    main_multi_label.args = parse_dict_args(**adapted_args, **kwargs)
+    main_multi_label.main(context)
 
 
 if __name__ == "__main__":

@@ -15,6 +15,7 @@ from torch.autograd import Variable
 from torch.utils.data import DataLoader
 from torch.utils.data.sampler import BatchSampler, SubsetRandomSampler
 import torchvision.datasets
+import torchvision.transforms as transforms
 
 from mean_teacher import architectures, datasets, data, losses, ramps, cli
 from mean_teacher.run_context import RunContext
@@ -23,12 +24,28 @@ from mean_teacher.utils import *
 
 import pretrainedmodels
 
+import dataset_processing
+from gen_labels import get_labels
+
+from resnet_224 import *
+#import resnext_101_64x4d 
+
 LOG = logging.getLogger('main')
 
 args = None
 best_prec1 = 0
 global_step = 0
 
+DATA_PATH = '/misc/lmbraid19/mittal/dense_prediction/forked/mean-teacher/pytorch/dataset/VOC_2012_class/'
+TRAIN_DATA = 'train'
+TEST_DATA = 'val'
+TRAIN_IMG_FILE = 'train_img.txt'
+TEST_IMG_FILE = 'val_img.txt'
+TRAIN_LABEL_FILE = 'train_label.txt'
+TEST_LABEL_FILE = 'val_label.txt'
+
+train_labels = get_labels('train')
+test_labels = get_labels('test')
 
 def main(context):
     global global_step
@@ -39,29 +56,55 @@ def main(context):
     validation_log = context.create_train_log("validation")
     ema_validation_log = context.create_train_log("ema_validation")
 
-    dataset_config = datasets.__dict__[args.dataset]()
-    num_classes = dataset_config.pop('num_classes')
-    train_loader, eval_loader = create_data_loaders(**dataset_config, args=args)
-
+    #dataset_config = datasets.__dict__[args.dataset]()
+    #num_classes = dataset_config.pop('num_classes')
+    #train_loader, eval_loader = create_data_loaders(**dataset_config, args=args)
+    train_loader, eval_loader = create_data_loaders()
+    
     def create_model(ema=False):
         LOG.info("=> creating {pretrained}{ema}model '{arch}'".format(
             pretrained='pre-trained ' if args.pretrained else '',
             ema='EMA ' if ema else '',
             arch=args.arch))
-        
+       
+        ''' 
+        model = resnext_101_64x4d.resnext_101_64x4d
+        model.load_state_dict(torch.load('resnext_101_64x4d.pth'))
+        model.eval() 
+        #model = torch.load('resnext_101_64x4d.pth')
+        #model.load_state_dict(checkpoint['state_dict'])   
+        #model.cuda()
+        #model = torch.load
+        #torch.load('resnext_101_64x4d.pth')['state_dict']       
+        #model = torch.nn.DataParallel(model).cuda()
+        model.cuda()
+       
         model_factory = architectures.__dict__[args.arch]
         model_params = dict(pretrained=args.pretrained, num_classes=num_classes)
         model = model_factory(**model_params)
-        model = nn.DataParallel(model).cuda()
-        
-        #model_name = 'resnext50_32x4d'
-        ''' 
-        model_name = 'resnext101_64x4d'
-        model = pretrainedmodels.__dict__[model_name](num_classes=1000, pretrained=None)
-        model.last_linear = nn.Linear(2048, 10)
-        model = torch.nn.DataParallel(model).cuda()
-        #cudnn.benchmark = False
+        #model = nn.DataParallel(model).cuda()
+        model.cuda()
         '''
+        '''
+        #model_name = 'resnext50_32x4d'
+        '''
+        ''' 
+        #model_name = 'resnext101_64x4d'
+        '''
+        model_name = 'resnet18'
+        model = pretrainedmodels.__dict__[model_name](num_classes=1000, pretrained='imagenet')
+        model.last_linear = nn.Sequential(nn.Linear(512, 20), nn.Sigmoid())
+        model = torch.nn.DataParallel(model).cuda()
+        ''' 
+        model = resnet18(pretrained=True)
+        model = torch.nn.DataParallel(model, device_ids=range(torch.cuda.device_count()))
+        cudnn.benchmark = True
+        model.module.fc = nn.Sequential(*list(model.module.fc.children())[:-1], nn.Linear(512, 20), nn.Sigmoid())
+        #self.dis.module.fc = nn.Linear(4096, 7)
+        model.cuda()   
+        '''
+        #cudnn.benchmark = False
+        
 
         if ema:
             for param in model.parameters():
@@ -158,21 +201,85 @@ def parse_dict_args(**kwargs):
     args = parser.parse_args(cmdline_args)
 
 
-def create_data_loaders(train_transformation,
-                        eval_transformation,
-                        datadir,
-                        args):
+def create_data_loaders():
+   
+    transform_train = transforms.Compose([
+        transforms.RandomRotation(10),
+        transforms.RandomResizedCrop(224),
+        transforms.RandomHorizontalFlip(),
+        transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.1),
+        transforms.ToTensor(),
+        transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),  # taken from imagenet, find out real values for pascal VOC 2012
+    ])
+    ''' 
+    transform_train = transforms.Compose([
+        transforms.Resize(size=(224, 224), interpolation=2),
+        transforms.RandomCrop(224, padding=4),
+        transforms.RandomHorizontalFlip(),
+        transforms.ToTensor(),
+        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+    ])
+    '''
+    transform_test = transforms.Compose([
+        transforms.Resize(size=(224, 224), interpolation=2),
+        transforms.ToTensor(),
+        transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
+    ])
+    
+    assert_exactly_one([args.exclude_unlabeled, args.labeled_batch_size])
+    '''
+    dataset = dataset_processing.DatasetProcessing(
+        DATA_PATH, TRAIN_DATA, TRAIN_IMG_FILE, TRAIN_LABEL_FILE, transform_train)
+
+    #dataset_test = dataset_processing.DatasetProcessing(
+        #DATA_PATH, TEST_DATA, TEST_IMG_FILE, TEST_LABEL_FILE, transform_test)
+    
+    train_loader = torch.utils.data.DataLoader(dataset,
+                                               batch_size= args.batch_size,
+                                               num_workers=args.workers,
+                                               pin_memory=True)
+    
+    if args.labels:
+        labeled_idxs, unlabeled_idxs = data.relabel_dataset_ml(dataset, args.percent)
+        #print (len(labeled_idxs))
+        #print (len(unlabeled_idxs))
+
+    if args.exclude_unlabeled:
+        sampler = SubsetRandomSampler(labeled_idxs)
+        batch_sampler = BatchSampler(sampler, args.batch_size, drop_last=True)
+    elif args.labeled_batch_size:
+        print ('two stream samples')
+        batch_sampler = data.TwoStreamBatchSampler(
+            unlabeled_idxs, labeled_idxs, args.batch_size, args.labeled_batch_size)
+    else:
+        assert False, "labeled batch size {}".format(args.labeled_batch_size)
+     
+    train_loader = torch.utils.data.DataLoader(dataset,
+                                               batch_sampler=batch_sampler,
+                                               num_workers=args.workers,
+                                               pin_memory=True)
+     
+    eval_loader = torch.utils.data.DataLoader(
+        dataset_test,
+        batch_size=args.batch_size,
+        shuffle=False,
+        num_workers=2 * args.workers,  # Needs images twice as fast
+        pin_memory=True,
+        drop_last=False)
+    
+        
+    '''
+    datadir = '/misc/lmbraid19/mittal/dense_prediction/forked/mean-teacher/pytorch/dataset/VOC_2012_class/'
     traindir = os.path.join(datadir, args.train_subdir)
     evaldir = os.path.join(datadir, args.eval_subdir)
 
     assert_exactly_one([args.exclude_unlabeled, args.labeled_batch_size])
 
-    dataset = torchvision.datasets.ImageFolder(traindir, train_transformation)
-
+    dataset = torchvision.datasets.ImageFolder(traindir, transform_train)
+    dataset, labels = data.change_labels(dataset, DATA_PATH, TRAIN_LABEL_FILE)
+     
     if args.labels:
-        with open(args.labels) as f:
-            labels = dict(line.split(' ') for line in f.read().splitlines())
-        labeled_idxs, unlabeled_idxs = data.relabel_dataset(dataset, labels)
+        labeled_idxs, unlabeled_idxs = data.relabel_dataset_ml(dataset, labels)
 
     if args.exclude_unlabeled:
         sampler = SubsetRandomSampler(labeled_idxs)
@@ -187,15 +294,21 @@ def create_data_loaders(train_transformation,
                                                batch_sampler=batch_sampler,
                                                num_workers=args.workers,
                                                pin_memory=True)
+    
+    #dataset_test = torchvision.datasets.ImageFolder(evaldir, transform_test)
+    #dataset_test, labels = data.change_labels(dataset_test, DATA_PATH, TEST_LABEL_FILE)
 
+    dataset_test = dataset_processing.DatasetProcessing(
+        DATA_PATH, TEST_DATA, TEST_IMG_FILE, TEST_LABEL_FILE, transform_test)
+    
     eval_loader = torch.utils.data.DataLoader(
-        torchvision.datasets.ImageFolder(evaldir, eval_transformation),
+        dataset_test,
         batch_size=args.batch_size,
         shuffle=False,
         num_workers=2 * args.workers,  # Needs images twice as fast
         pin_memory=True,
         drop_last=False)
-
+    
     return train_loader, eval_loader
 
 
@@ -205,11 +318,52 @@ def update_ema_variables(model, ema_model, alpha, global_step):
     for ema_param, param in zip(ema_model.parameters(), model.parameters()):
         ema_param.data.mul_(alpha).add_(1 - alpha, param.data)
 
+def BCE_Loss (input, target):
+    #loss = -1*target*torch.log(input) - (1-target)*torch.log((1-input))
+    loss = 0.0
+    count = 0
+    for i in range(input.size(0)):
+        if target.data[i][0] == -1:
+            continue
+        else:
+            for j in range (input.size(1)):
+                if target.data[i][j] == 1:
+                    loss += - torch.log(input[i][j] + 0.001)
+                else:
+                    loss += - torch.log(1.0-input[i][j]+ 0.001)
+            count += 1
+    bce_loss = loss/ count
+    return bce_loss
+
+
+def SigmoidCELoss (input, target):
+    max_val = (-input).clamp(min=0)
+    loss = input - input * target + max_val + ((-max_val).exp() + (-input - max_val).exp()).log()
+    bce_loss = loss.sum()/input.size(0)
+    print (bce_loss)
+    return bce_loss
+
+
+def SigmoidCE_Loss(logits, labels, ignore_index=NO_LABEL):
+    #max(x, 0) - x * z + log(1 + exp(-abs(x)))
+    zeros = Variable(torch.zeros(logits.size()).cuda())
+    t_a = torch.max(logits, zeros) 
+    t_b = torch.mul(logits, labels) 
+    #ones = torch.ones(logits.size(0))*-1 
+    t_c = torch.log(1 + torch.exp(-torch.abs(logits)))
+    loss = t_a - t_b + t_c
+    bce_loss = loss.sum()/logits.size(0)
+    print (bce_loss)
+    return bce_loss
+    #return loss
+    
 
 def train(train_loader, model, ema_model, optimizer, epoch, log):
     global global_step
 
-    class_criterion = nn.CrossEntropyLoss(size_average=False, ignore_index=NO_LABEL).cuda()
+    #class_criterion = nn.CrossEntropyLoss(size_average=False, ignore_index=NO_LABEL).cuda()
+    class_criterion = nn.BCELoss().cuda()
+    
     if args.consistency_type == 'mse':
         consistency_criterion = losses.softmax_mse_loss
     elif args.consistency_type == 'kl':
@@ -225,15 +379,25 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
     ema_model.train()
 
     end = time.time()
-    print ('lr: ', optimizer.param_groups[0]['lr'])
-    for i, ((input, ema_input), target) in enumerate(train_loader):
+    #print ('lr: ', optimizer.param_groups[0]['lr'])
+    for i, ((inputs), target) in enumerate(train_loader):
+        #print (inputs.size())
+        ema_input = inputs
+        labeled_batch_idxs = []
+   
+        ''' 
+        for idx in range(target.size(0)):
+            if NO_LABEL != target[idx][0]:
+                labeled_batch_idxs.append(idx)
+        '''
+            
         # measure data loading time
         meters.update('data_time', time.time() - end)
 
         adjust_learning_rate(optimizer, epoch, i, len(train_loader))
         meters.update('lr', optimizer.param_groups[0]['lr'])
 
-        input_var = torch.autograd.Variable(input)
+        input_var = torch.autograd.Variable(inputs)
         ema_input_var = torch.autograd.Variable(ema_input, volatile=True)
         target_var = torch.autograd.Variable(target.cuda(async=True))
 
@@ -265,11 +429,45 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
         else:
             class_logit, cons_logit = logit1, logit1
             res_loss = 0
+        
+        #class_logit.type() 
+        #class_logit = class_logit.type(torch.FloatTensor)
+        #target_var = target_var.type(torch.FloatTensor)
+    
+        #labeled_class_logit = torch.randn(len(labeled_batch_idxs), 20, dtype=torch.float)
+        #labeled_target_var = torch.randn(len(labeled_batch_idxs), 20, dtype=torch.float)
+       
          
-        class_loss = class_criterion(class_logit, target_var) / minibatch_size
-        meters.update('class_loss', class_loss.data[0])
+        #labeled_class_logit = torch.zeros([len(labeled_batch_idxs), 20])   
+        #labeled_target_var = torch.zeros([len(labeled_batch_idxs), 20])   
 
-        ema_class_loss = class_criterion(ema_logit, target_var) / minibatch_size
+        '''
+        for k, idx in enumerate(labeled_batch_idxs):
+            labeled_class_logit[k] = class_logit.data[idx]
+            labeled_target_var[k] = target_var.data[idx]
+            
+        labeled_class_logit = Variable(labeled_class_logit.cuda())         
+        labeled_target_var = Variable(labeled_target_var.cuda()) 
+        '''
+        #print (labeled_batch_idxs)
+        #print (labeled_class_logit.data[0])
+        #print (class_logit.data[0])
+
+        #labeled_target_var = labeled_target_var.type(torch.FloatTensor).cuda()
+        #class_loss = class_criterion(labeled_class_logit, labeled_target_var) 
+        
+        target_var = target_var.type(torch.FloatTensor).cuda()
+        #class_loss = class_criterion(class_logit, target_var) 
+        class_loss = BCE_Loss(class_logit, target_var)
+        #print (class_loss)
+        #class_loss = SigmoidCE_Loss(class_logit, target_var)
+        #class_loss = SigmoidCELoss(class_logit, target_var)
+         
+        meters.update('class_loss', class_loss.data[0])
+        
+        ema_logit.cuda()
+        
+        ema_class_loss = class_criterion(ema_logit, target_var) 
         meters.update('ema_class_loss', ema_class_loss.data[0])
 
         if args.consistency:
@@ -281,22 +479,22 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
             consistency_loss = 0
             meters.update('cons_loss', 0)
 
-        loss = class_loss #+ consistency_loss + res_loss
+        loss = class_loss + consistency_loss #+ res_loss
         assert not (np.isnan(loss.data[0]) or loss.data[0] > 1e5), 'Loss explosion: {}'.format(loss.data[0])
         meters.update('loss', loss.data[0])
 
-        prec1, prec5 = accuracy(class_logit.data, target_var.data, topk=(1, 5))
-        meters.update('top1', prec1[0], labeled_minibatch_size)
-        meters.update('error1', 100. - prec1[0], labeled_minibatch_size)
-        meters.update('top5', prec5[0], labeled_minibatch_size)
-        meters.update('error5', 100. - prec5[0], labeled_minibatch_size)
+        prec1 = accuracy(class_logit.data, target_var.data, topk=(1,))
+        meters.update('top1', prec1, labeled_minibatch_size)
+        meters.update('error1', 100. - prec1, labeled_minibatch_size)
+        #meters.update('top5', prec5[0], labeled_minibatch_size)
+        #meters.update('error5', 100. - prec5[0], labeled_minibatch_size)
 
-        ema_prec1, ema_prec5 = accuracy(ema_logit.data, target_var.data, topk=(1, 5))
-        meters.update('ema_top1', ema_prec1[0], labeled_minibatch_size)
-        meters.update('ema_error1', 100. - ema_prec1[0], labeled_minibatch_size)
-        meters.update('ema_top5', ema_prec5[0], labeled_minibatch_size)
-        meters.update('ema_error5', 100. - ema_prec5[0], labeled_minibatch_size)
-
+        ema_prec1 = accuracy(ema_logit.data, target_var.data, topk=(1,))
+        meters.update('ema_top1', ema_prec1, labeled_minibatch_size)
+        meters.update('ema_error1', 100. - ema_prec1, labeled_minibatch_size)
+        #meters.update('ema_top5', ema_prec5[0], labeled_minibatch_size)
+        #meters.update('ema_error5', 100. - ema_prec5[0], labeled_minibatch_size)
+        
         # compute gradient and do SGD step
         optimizer.zero_grad()
         loss.backward()
@@ -307,7 +505,7 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
         # measure elapsed time
         meters.update('batch_time', time.time() - end)
         end = time.time()
-
+        '''
         if i % args.print_freq == 0:
             LOG.info(
                 'Epoch: [{0}][{1}/{2}]\t'
@@ -324,20 +522,22 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
                 **meters.averages(),
                 **meters.sums()
             })
-
+        '''
 
 def validate(eval_loader, model, log, global_step, epoch):
-    class_criterion = nn.CrossEntropyLoss(size_average=False, ignore_index=NO_LABEL).cuda()
+    #class_criterion = nn.CrossEntropyLoss(size_average=False, ignore_index=NO_LABEL).cuda()
+    class_criterion = nn.BCELoss(size_average=False).cuda()
     meters = AverageMeterSet()
 
     # switch to evaluate mode
     model.eval()
 
     end = time.time()
-    for i, (input, target) in enumerate(eval_loader):
+    for i, (inputs, target) in enumerate(eval_loader):
+        
         meters.update('data_time', time.time() - end)
 
-        input_var = torch.autograd.Variable(input, volatile=True)
+        input_var = torch.autograd.Variable(inputs, volatile=True)
         target_var = torch.autograd.Variable(target.cuda(async=True), volatile=True)
 
         minibatch_size = len(target_var)
@@ -346,27 +546,30 @@ def validate(eval_loader, model, log, global_step, epoch):
         meters.update('labeled_minibatch_size', labeled_minibatch_size)
 
         # compute output
-        #output1  = model(input_var)
+        output1  = model(input_var)
         #softmax1 = F.softmax(output1, dim=1)
         
-        output1, output2 = model(input_var)
-        softmax1, softmax2 = F.softmax(output1, dim=1), F.softmax(output2, dim=1)    
+        #output1, output2 = model(input_var)
+        #softmax1, softmax2 = F.softmax(output1, dim=1), F.softmax(output2, dim=1)    
     
         class_loss = class_criterion(output1, target_var) / minibatch_size
 
         # measure accuracy and record loss
-        prec1, prec5 = accuracy(output1.data, target_var.data, topk=(1, 5))
+        #prec1, prec5 = accuracy(output1.data, target_var.data, topk=(1, 5))
+        prec1 = accuracy(output1.data, target_var.data, topk=(1,))
         meters.update('class_loss', class_loss.data[0], labeled_minibatch_size)
-        meters.update('top1', prec1[0], labeled_minibatch_size)
-        meters.update('error1', 100.0 - prec1[0], labeled_minibatch_size)
-        meters.update('top5', prec5[0], labeled_minibatch_size)
-        meters.update('error5', 100.0 - prec5[0], labeled_minibatch_size)
+        meters.update('top1', prec1, labeled_minibatch_size)
+        meters.update('error1', 100.0 - prec1, labeled_minibatch_size)
+        #meters.update('top5', prec5[0], labeled_minibatch_size)
+        #meters.update('error5', 100.0 - prec5[0], labeled_minibatch_size)
 
         # measure elapsed time
         meters.update('batch_time', time.time() - end)
         end = time.time()
 
+        
         if i % args.print_freq == 0:
+            ''' 
             LOG.info(
                 'Test: [{0}/{1}]\t'
                 'Time {meters[batch_time]:.3f}\t'
@@ -383,7 +586,16 @@ def validate(eval_loader, model, log, global_step, epoch):
                 'Prec@1 {meters[top1]:.3f}\t'
                 'Prec@5 {meters[top5]:.3f}'.format(
                     i, len(eval_loader), meters=meters))
-
+            '''
+            print ('Epoch: ', epoch )
+            print (
+                'Test: [{0}/{1}]\t'
+                'Time {meters[batch_time]:.3f}\t'
+                'Data {meters[data_time]:.3f}\t'
+                'Class {meters[class_loss]:.4f}\t'
+                'Prec@1 {meters[top1]:.3f}'.format(
+                    i, len(eval_loader), meters=meters))
+    '''    
     LOG.info(' * Prec@1 {top1.avg:.3f}\tPrec@5 {top5.avg:.3f}'
           .format(top1=meters['top1'], top5=meters['top5']))
     log.record(epoch, {
@@ -392,7 +604,7 @@ def validate(eval_loader, model, log, global_step, epoch):
         **meters.averages(),
         **meters.sums()
     })
-
+    '''
     return meters['top1'].avg
 
 
@@ -428,8 +640,44 @@ def get_current_consistency_weight(epoch):
     return args.consistency * ramps.sigmoid_rampup(epoch, args.consistency_rampup)
 
 
-def accuracy(output, target, topk=(1,)):
+def accuracy(outputs, targets, topk=(1,)):
     """Computes the precision@k for the specified values of k"""
+
+    thres = torch.ones(targets.size(0), 20)*0.5
+    thres = thres.cuda()
+    #thres = Variable(thres.cuda())
+
+    cond = torch.ge(outputs, thres)
+    #targets = targets.type(torch.ByteTensor).cuda()
+    
+    count_label_ones = 0
+    count_label_zeros = 0 
+    correct_ones = 0
+    correct_zeros = 0
+    correct = 0
+    total = 0  
+
+    for i in range(targets.size(0)):
+        for  j in range(20):
+            if targets[i][j]==0:
+                count_label_zeros +=1
+            if targets[i][j]==1:
+                count_label_ones +=1
+
+    for i in range(targets.size(0)):
+        for  j in range(20):
+            if targets[i][j]==cond[i][j]:
+                correct +=1
+                if targets[i][j] == 0:
+                    correct_zeros +=1
+                elif targets[i][j] ==1:
+                    correct_ones +=1
+    total += targets.size(0)*20
+
+    avg_acc = (correct_ones/count_label_ones + correct_zeros/count_label_zeros)*100.0/2.0  
+    return avg_acc
+
+    '''
     maxk = max(topk)
     labeled_minibatch_size = max(target.ne(NO_LABEL).sum(), 1e-8)
 
@@ -442,6 +690,7 @@ def accuracy(output, target, topk=(1,)):
         correct_k = correct[:k].view(-1).float().sum(0, keepdim=True)
         res.append(correct_k.mul_(100.0 / labeled_minibatch_size))
     return res
+    '''
 
 
 if __name__ == '__main__':

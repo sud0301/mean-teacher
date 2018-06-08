@@ -44,12 +44,17 @@ def cifar10():
     ]))
     '''   
     train_transformation = data.TransformTwice(transforms.Compose([
+        #transforms.Resize(size=(224, 224), interpolation=2),
+        transforms.RandomRotation(10),
+        transforms.RandomResizedCrop(224),
         transforms.RandomHorizontalFlip(),
+        transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.1),
         transforms.ToTensor(),
         transforms.Normalize(**channel_stats)
     ]))
      
     eval_transformation = transforms.Compose([
+        transforms.Resize(224),
         transforms.ToTensor(),
         transforms.Normalize(**channel_stats)
     ])

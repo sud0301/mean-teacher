@@ -1,0 +1,4352 @@
+DataParallel(
+  (module): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), dilation=(1, 1), ceil_mode=False)
+    (4): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (5): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (6): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (4): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (5): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (6): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (7): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (8): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (9): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (10): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (11): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (12): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (13): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (14): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (15): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (16): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (17): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (18): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (19): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (20): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (21): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (22): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (7): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (8): AvgPool2d(kernel_size=(7, 7), stride=(1, 1), padding=0, ceil_mode=False, count_include_pad=True)
+    (9): Lambda(
+    )
+    (10): Sequential(
+      (0): Lambda(
+      )
+      (1): Linear(in_features=2048, out_features=1000, bias=True)
+    )
+  )
+)
+DataParallel(
+  (module): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), dilation=(1, 1), ceil_mode=False)
+    (4): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (5): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (6): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (4): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (5): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (6): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (7): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (8): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (9): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (10): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (11): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (12): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (13): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (14): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (15): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (16): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (17): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (18): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (19): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (20): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (21): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (22): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (7): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (8): AvgPool2d(kernel_size=(7, 7), stride=(1, 1), padding=0, ceil_mode=False, count_include_pad=True)
+    (9): Lambda(
+    )
+    (10): Sequential(
+      (0): Lambda(
+      )
+      (1): Linear(in_features=2048, out_features=1000, bias=True)
+    )
+  )
+)
+DataParallel(
+  (module): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), dilation=(1, 1), ceil_mode=False)
+    (4): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (5): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (6): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (4): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (5): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (6): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (7): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (8): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (9): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (10): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (11): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (12): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (13): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (14): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (15): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (16): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (17): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (18): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (19): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (20): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (21): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (22): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (7): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (8): AvgPool2d(kernel_size=(7, 7), stride=(1, 1), padding=0, ceil_mode=False, count_include_pad=True)
+    (9): Lambda(
+    )
+    (10): Sequential(
+      (0): Lambda(
+      )
+      (1): Linear(in_features=2048, out_features=1000, bias=True)
+    )
+  )
+)
+create simple model
+DataParallel(
+  (module): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), dilation=(1, 1), ceil_mode=False)
+    (4): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (5): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (6): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (4): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (5): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (6): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (7): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (8): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (9): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (10): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (11): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (12): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (13): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (14): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (15): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (16): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (17): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (18): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (19): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (20): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (21): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (22): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (7): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (8): AvgPool2d(kernel_size=(7, 7), stride=(1, 1), padding=0, ceil_mode=False, count_include_pad=True)
+    (9): Lambda(
+    )
+    (10): Sequential(
+      (0): Lambda(
+      )
+      (1): Linear(in_features=2048, out_features=1000, bias=True)
+    )
+  )
+)
+DataParallel(
+  (module): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), dilation=(1, 1), ceil_mode=False)
+    (4): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (5): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (6): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (4): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (5): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (6): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (7): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (8): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (9): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (10): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (11): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (12): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (13): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (14): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (15): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (16): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (17): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (18): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (19): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (20): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (21): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (22): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (7): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (8): AvgPool2d(kernel_size=(7, 7), stride=(1, 1), padding=0, ceil_mode=False, count_include_pad=True)
+    (9): Lambda(
+    )
+    (10): Sequential(
+      (0): Lambda(
+      )
+      (1): Linear(in_features=2048, out_features=1000, bias=True)
+    )
+  )
+)
+create simple model
+DataParallel(
+  (module): Sequential(
+    (0): Conv2d(3, 64, kernel_size=(7, 7), stride=(2, 2), padding=(3, 3), bias=False)
+    (1): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True)
+    (2): ReLU()
+    (3): MaxPool2d(kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), dilation=(1, 1), ceil_mode=False)
+    (4): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(64, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (5): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(256, 512, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(512, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(512, 512, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (6): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(512, 1024, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (3): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (4): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (5): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (6): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (7): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (8): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (9): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (10): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (11): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (12): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (13): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (14): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (15): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (16): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (17): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (18): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (19): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (20): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (21): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (22): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(1024, 1024, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(1024, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (7): Sequential(
+      (0): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Sequential(
+            (0): Conv2d(1024, 2048, kernel_size=(1, 1), stride=(2, 2), bias=False)
+            (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (1): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+      (2): Sequential(
+        (0): LambdaMap(
+          (0): Sequential(
+            (0): Sequential(
+              (0): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+              (1): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (2): ReLU()
+              (3): Conv2d(2048, 2048, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=64, bias=False)
+              (4): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+              (5): ReLU()
+            )
+            (1): Conv2d(2048, 2048, kernel_size=(1, 1), stride=(1, 1), bias=False)
+            (2): BatchNorm2d(2048, eps=1e-05, momentum=0.1, affine=True)
+          )
+          (1): Lambda(
+          )
+        )
+        (1): LambdaReduce(
+        )
+        (2): ReLU()
+      )
+    )
+    (8): AvgPool2d(kernel_size=(7, 7), stride=(1, 1), padding=0, ceil_mode=False, count_include_pad=True)
+    (9): Lambda(
+    )
+    (10): Sequential(
+      (0): Lambda(
+      )
+      (1): Linear(in_features=2048, out_features=1000, bias=True)
+    )
+  )
+)

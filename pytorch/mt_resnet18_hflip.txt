@@ -1490,3 +1490,480 @@ Test: [10/20]	Time 0.102 (0.229)	Data 0.001 (0.121)	Class 1.0067 (0.8066)	Prec@1
 Evaluating the EMA model:
 Test: [0/20]	Time 1.355 (1.355)	Data 1.229 (1.229)	Class 0.3957 (0.3957)	Prec@1 91.992 (91.992)	Prec@5 99.609 (99.609)
 Test: [10/20]	Time 0.104 (0.221)	Data 0.001 (0.112)	Class 1.1006 (0.7331)	Prec@1 84.375 (87.464)	Prec@5 99.023 (99.379)
+Evaluating the primary model:
+Test: [0/20]	Time 1.795 (1.795)	Data 1.652 (1.652)	Class 0.4060 (0.4060)	Prec@1 91.016 (91.016)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.100 (0.309)	Data 0.000 (0.201)	Class 1.0626 (0.7498)	Prec@1 84.570 (86.630)	Prec@5 98.438 (99.290)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.182 (1.182)	Data 1.073 (1.073)	Class 0.3697 (0.3697)	Prec@1 92.578 (92.578)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.098 (0.203)	Data 0.001 (0.098)	Class 1.1740 (0.7339)	Prec@1 83.398 (87.589)	Prec@5 98.242 (99.325)
+Evaluating the primary model:
+Test: [0/20]	Time 1.433 (1.433)	Data 1.300 (1.300)	Class 0.3578 (0.3578)	Prec@1 92.969 (92.969)	Prec@5 100.000 (100.000)
+Test: [10/20]	Time 1.608 (0.384)	Data 1.483 (0.277)	Class 1.3477 (0.6801)	Prec@1 79.688 (87.731)	Prec@5 98.633 (99.325)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.338 (1.338)	Data 1.213 (1.213)	Class 0.3874 (0.3874)	Prec@1 92.578 (92.578)	Prec@5 100.000 (100.000)
+Test: [10/20]	Time 0.138 (0.221)	Data 0.001 (0.111)	Class 1.2175 (0.7091)	Prec@1 83.008 (87.713)	Prec@5 98.438 (99.414)
+Evaluating the primary model:
+Test: [0/20]	Time 1.836 (1.836)	Data 1.714 (1.714)	Class 0.2972 (0.2972)	Prec@1 92.773 (92.773)	Prec@5 100.000 (100.000)
+Test: [10/20]	Time 0.109 (0.309)	Data 0.000 (0.199)	Class 1.1130 (0.7022)	Prec@1 82.812 (86.825)	Prec@5 98.047 (99.254)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.235 (1.235)	Data 1.112 (1.112)	Class 0.3496 (0.3496)	Prec@1 92.578 (92.578)	Prec@5 100.000 (100.000)
+Test: [10/20]	Time 0.104 (0.210)	Data 0.001 (0.102)	Class 1.1560 (0.7148)	Prec@1 83.203 (87.624)	Prec@5 98.633 (99.379)
+Evaluating the primary model:
+Test: [0/20]	Time 1.556 (1.556)	Data 1.430 (1.430)	Class 0.4269 (0.4269)	Prec@1 91.211 (91.211)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.107 (0.266)	Data 0.001 (0.157)	Class 1.2701 (0.7271)	Prec@1 82.227 (87.003)	Prec@5 98.438 (99.237)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.348 (1.348)	Data 1.224 (1.224)	Class 0.3716 (0.3716)	Prec@1 91.211 (91.211)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.102 (0.217)	Data 0.001 (0.112)	Class 1.1761 (0.7066)	Prec@1 83.398 (87.589)	Prec@5 98.633 (99.361)
+Evaluating the primary model:
+Test: [0/20]	Time 1.354 (1.354)	Data 1.226 (1.226)	Class 0.3300 (0.3300)	Prec@1 92.969 (92.969)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.101 (0.222)	Data 0.000 (0.112)	Class 1.1862 (0.6558)	Prec@1 82.617 (88.139)	Prec@5 98.828 (99.503)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.368 (1.368)	Data 1.231 (1.231)	Class 0.3705 (0.3705)	Prec@1 92.773 (92.773)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.104 (0.246)	Data 0.001 (0.132)	Class 1.1405 (0.7025)	Prec@1 83.398 (87.784)	Prec@5 98.828 (99.432)
+Evaluating the primary model:
+Test: [0/20]	Time 1.506 (1.506)	Data 1.378 (1.378)	Class 0.3189 (0.3189)	Prec@1 92.969 (92.969)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.106 (0.239)	Data 0.001 (0.130)	Class 1.2899 (0.7655)	Prec@1 81.250 (86.701)	Prec@5 98.242 (99.094)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.308 (1.308)	Data 1.185 (1.185)	Class 0.3514 (0.3514)	Prec@1 92.773 (92.773)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.105 (0.214)	Data 0.001 (0.109)	Class 1.1796 (0.7145)	Prec@1 82.617 (87.553)	Prec@5 98.633 (99.361)
+Evaluating the primary model:
+Test: [0/20]	Time 1.912 (1.912)	Data 1.786 (1.786)	Class 0.5137 (0.5137)	Prec@1 89.453 (89.453)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.110 (0.396)	Data 0.000 (0.284)	Class 1.1485 (0.7355)	Prec@1 81.836 (86.417)	Prec@5 98.242 (99.272)
+Evaluating the primary model:
+Test: [0/20]	Time 3.056 (3.056)	Data 2.926 (2.926)	Class 2.4472 (2.4472)	Prec@1 14.258 (14.258)	Prec@5 81.836 (81.836)
+Test: [10/20]	Time 0.107 (0.547)	Data 0.001 (0.432)	Class 0.9489 (2.0613)	Prec@1 70.508 (22.816)	Prec@5 98.828 (90.909)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.432 (1.432)	Data 1.311 (1.311)	Class 1.5230 (1.5230)	Prec@1 45.508 (45.508)	Prec@5 91.016 (91.016)
+Test: [10/20]	Time 0.099 (0.240)	Data 0.001 (0.133)	Class 1.3617 (1.5613)	Prec@1 52.344 (38.672)	Prec@5 97.070 (92.312)
+Evaluating the primary model:
+Test: [0/20]	Time 0.987 (0.987)	Data 0.882 (0.882)	Class 1.6107 (1.6107)	Prec@1 33.008 (33.008)	Prec@5 94.922 (94.922)
+Test: [10/20]	Time 0.097 (0.181)	Data 0.001 (0.081)	Class 1.6307 (1.3480)	Prec@1 36.328 (50.089)	Prec@5 96.094 (94.567)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.231 (1.231)	Data 1.107 (1.107)	Class 1.2291 (1.2291)	Prec@1 57.617 (57.617)	Prec@5 93.945 (93.945)
+Test: [10/20]	Time 0.100 (0.205)	Data 0.001 (0.101)	Class 1.2705 (1.3553)	Prec@1 53.516 (48.366)	Prec@5 96.680 (95.011)
+Evaluating the primary model:
+Test: [0/20]	Time 1.272 (1.272)	Data 1.155 (1.155)	Class 1.4629 (1.4629)	Prec@1 49.609 (49.609)	Prec@5 92.773 (92.773)
+Test: [10/20]	Time 0.100 (0.214)	Data 0.001 (0.106)	Class 0.9432 (1.2703)	Prec@1 62.695 (52.486)	Prec@5 98.438 (96.147)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.262 (1.262)	Data 1.145 (1.145)	Class 1.0138 (1.0138)	Prec@1 66.797 (66.797)	Prec@5 95.117 (95.117)
+Test: [10/20]	Time 0.104 (0.212)	Data 0.001 (0.105)	Class 1.1902 (1.2152)	Prec@1 54.883 (54.812)	Prec@5 97.266 (96.076)
+Evaluating the primary model:
+Test: [0/20]	Time 1.154 (1.154)	Data 1.038 (1.038)	Class 1.4091 (1.4091)	Prec@1 53.711 (53.711)	Prec@5 94.531 (94.531)
+Test: [10/20]	Time 0.104 (0.199)	Data 0.001 (0.095)	Class 1.3675 (1.3237)	Prec@1 51.172 (53.888)	Prec@5 95.508 (95.064)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.232 (1.232)	Data 1.114 (1.114)	Class 0.9277 (0.9277)	Prec@1 66.406 (66.406)	Prec@5 96.484 (96.484)
+Test: [10/20]	Time 0.101 (0.207)	Data 0.001 (0.102)	Class 1.1560 (1.1216)	Prec@1 55.664 (58.434)	Prec@5 97.070 (96.786)
+Evaluating the primary model:
+Test: [0/20]	Time 1.249 (1.249)	Data 1.129 (1.129)	Class 0.8091 (0.8091)	Prec@1 71.289 (71.289)	Prec@5 97.266 (97.266)
+Test: [10/20]	Time 0.104 (0.212)	Data 0.001 (0.103)	Class 1.2950 (1.1244)	Prec@1 47.266 (59.428)	Prec@5 96.289 (96.626)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.179 (1.179)	Data 1.058 (1.058)	Class 1.0697 (1.0697)	Prec@1 61.719 (61.719)	Prec@5 96.484 (96.484)
+Test: [10/20]	Time 0.114 (0.207)	Data 0.001 (0.097)	Class 1.2471 (1.1170)	Prec@1 49.414 (59.304)	Prec@5 97.070 (96.875)
+Evaluating the primary model:
+Test: [0/20]	Time 0.960 (0.960)	Data 0.854 (0.854)	Class 1.0307 (1.0307)	Prec@1 64.648 (64.648)	Prec@5 97.070 (97.070)
+Test: [10/20]	Time 0.103 (0.179)	Data 0.001 (0.078)	Class 1.1029 (1.1765)	Prec@1 58.594 (57.173)	Prec@5 96.094 (96.165)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.030 (1.030)	Data 0.921 (0.921)	Class 1.0108 (1.0108)	Prec@1 63.867 (63.867)	Prec@5 96.289 (96.289)
+Test: [10/20]	Time 0.100 (0.185)	Data 0.000 (0.084)	Class 1.0946 (1.0615)	Prec@1 56.836 (61.257)	Prec@5 97.266 (97.230)
+Evaluating the primary model:
+Test: [0/20]	Time 1.240 (1.240)	Data 1.119 (1.119)	Class 0.8774 (0.8774)	Prec@1 69.922 (69.922)	Prec@5 98.438 (98.438)
+Test: [10/20]	Time 0.104 (0.212)	Data 0.001 (0.102)	Class 1.8510 (1.0912)	Prec@1 40.039 (63.352)	Prec@5 91.016 (96.964)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.191 (1.191)	Data 1.068 (1.068)	Class 0.8989 (0.8989)	Prec@1 68.359 (68.359)	Prec@5 97.656 (97.656)
+Test: [10/20]	Time 0.103 (0.207)	Data 0.001 (0.098)	Class 1.1554 (1.0336)	Prec@1 56.445 (62.660)	Prec@5 96.484 (97.177)
+Evaluating the primary model:
+Test: [0/20]	Time 1.207 (1.207)	Data 1.085 (1.085)	Class 0.6489 (0.6489)	Prec@1 76.172 (76.172)	Prec@5 99.023 (99.023)
+Test: [10/20]	Time 0.105 (0.205)	Data 0.001 (0.099)	Class 1.1625 (0.9874)	Prec@1 52.539 (65.021)	Prec@5 96.289 (97.425)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.173 (1.173)	Data 1.054 (1.054)	Class 0.9052 (0.9052)	Prec@1 68.164 (68.164)	Prec@5 97.852 (97.852)
+Test: [10/20]	Time 0.136 (0.204)	Data 0.001 (0.096)	Class 0.9858 (0.9938)	Prec@1 61.133 (64.134)	Prec@5 97.656 (97.674)
+Evaluating the primary model:
+Test: [0/20]	Time 1.190 (1.190)	Data 1.070 (1.070)	Class 0.5181 (0.5181)	Prec@1 80.469 (80.469)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.103 (0.205)	Data 0.001 (0.098)	Class 1.0305 (1.0444)	Prec@1 63.477 (63.672)	Prec@5 97.461 (96.857)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.282 (1.282)	Data 1.139 (1.139)	Class 0.7544 (0.7544)	Prec@1 73.828 (73.828)	Prec@5 98.633 (98.633)
+Test: [10/20]	Time 0.103 (0.210)	Data 0.001 (0.104)	Class 1.0804 (0.9480)	Prec@1 58.594 (66.495)	Prec@5 96.484 (97.532)
+Evaluating the primary model:
+Test: [0/20]	Time 1.172 (1.172)	Data 1.049 (1.049)	Class 0.3971 (0.3971)	Prec@1 86.914 (86.914)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.150 (0.207)	Data 0.001 (0.096)	Class 1.1825 (1.0030)	Prec@1 52.148 (65.767)	Prec@5 96.875 (96.822)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.251 (1.251)	Data 1.133 (1.133)	Class 0.6722 (0.6722)	Prec@1 75.977 (75.977)	Prec@5 98.828 (98.828)
+Test: [10/20]	Time 0.102 (0.212)	Data 0.001 (0.104)	Class 1.0430 (0.9103)	Prec@1 60.352 (67.720)	Prec@5 96.289 (97.763)
+Evaluating the primary model:
+Test: [0/20]	Time 1.169 (1.169)	Data 1.048 (1.048)	Class 0.4845 (0.4845)	Prec@1 83.398 (83.398)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.110 (0.205)	Data 0.001 (0.096)	Class 0.7076 (1.0429)	Prec@1 73.047 (64.329)	Prec@5 99.023 (97.550)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.236 (1.236)	Data 1.078 (1.078)	Class 0.7356 (0.7356)	Prec@1 74.609 (74.609)	Prec@5 98.438 (98.438)
+Test: [10/20]	Time 0.105 (0.209)	Data 0.001 (0.099)	Class 0.9743 (0.8854)	Prec@1 61.914 (68.981)	Prec@5 97.656 (98.082)
+Evaluating the primary model:
+Test: [0/20]	Time 1.241 (1.241)	Data 1.111 (1.111)	Class 0.6427 (0.6427)	Prec@1 76.953 (76.953)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.102 (0.207)	Data 0.001 (0.102)	Class 0.9564 (0.9462)	Prec@1 66.406 (67.401)	Prec@5 97.070 (97.106)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.275 (1.275)	Data 1.156 (1.156)	Class 0.6615 (0.6615)	Prec@1 78.125 (78.125)	Prec@5 98.633 (98.633)
+Test: [10/20]	Time 0.109 (0.212)	Data 0.001 (0.106)	Class 0.9227 (0.8496)	Prec@1 64.844 (70.295)	Prec@5 97.656 (98.082)
+Evaluating the primary model:
+Test: [0/20]	Time 1.252 (1.252)	Data 1.124 (1.124)	Class 0.5237 (0.5237)	Prec@1 82.227 (82.227)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.103 (0.212)	Data 0.001 (0.103)	Class 0.6479 (0.9318)	Prec@1 79.883 (67.880)	Prec@5 98.242 (97.550)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.184 (1.184)	Data 1.068 (1.068)	Class 0.6639 (0.6639)	Prec@1 76.172 (76.172)	Prec@5 98.438 (98.438)
+Test: [10/20]	Time 0.102 (0.205)	Data 0.001 (0.098)	Class 0.8817 (0.8027)	Prec@1 66.992 (71.751)	Prec@5 98.242 (98.420)
+Evaluating the primary model:
+Test: [0/20]	Time 1.179 (1.179)	Data 1.048 (1.048)	Class 1.0386 (1.0386)	Prec@1 68.555 (68.555)	Prec@5 96.289 (96.289)
+Test: [10/20]	Time 0.102 (0.202)	Data 0.001 (0.096)	Class 1.0466 (0.8081)	Prec@1 55.664 (71.609)	Prec@5 98.828 (98.295)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.263 (1.263)	Data 1.147 (1.147)	Class 0.6384 (0.6384)	Prec@1 76.953 (76.953)	Prec@5 98.828 (98.828)
+Test: [10/20]	Time 0.106 (0.210)	Data 0.001 (0.105)	Class 0.9051 (0.8004)	Prec@1 66.602 (72.532)	Prec@5 97.852 (98.242)
+Evaluating the primary model:
+Test: [0/20]	Time 1.172 (1.172)	Data 1.053 (1.053)	Class 0.9813 (0.9813)	Prec@1 67.969 (67.969)	Prec@5 97.656 (97.656)
+Test: [10/20]	Time 0.103 (0.205)	Data 0.001 (0.096)	Class 1.1219 (0.9351)	Prec@1 59.180 (68.839)	Prec@5 98.047 (98.029)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.264 (1.264)	Data 1.107 (1.107)	Class 0.5528 (0.5528)	Prec@1 82.031 (82.031)	Prec@5 99.023 (99.023)
+Test: [10/20]	Time 0.110 (0.210)	Data 0.001 (0.101)	Class 0.8867 (0.7531)	Prec@1 66.602 (74.165)	Prec@5 98.828 (98.739)
+Evaluating the primary model:
+Test: [0/20]	Time 1.190 (1.190)	Data 1.063 (1.063)	Class 0.6685 (0.6685)	Prec@1 75.977 (75.977)	Prec@5 99.023 (99.023)
+Test: [10/20]	Time 0.139 (0.209)	Data 0.001 (0.097)	Class 0.8767 (0.7715)	Prec@1 68.750 (73.793)	Prec@5 97.266 (98.331)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.183 (1.183)	Data 1.062 (1.062)	Class 0.5838 (0.5838)	Prec@1 81.055 (81.055)	Prec@5 98.438 (98.438)
+Test: [10/20]	Time 0.103 (0.205)	Data 0.001 (0.097)	Class 0.8339 (0.7465)	Prec@1 67.773 (74.361)	Prec@5 99.023 (98.793)
+Evaluating the primary model:
+Test: [0/20]	Time 1.192 (1.192)	Data 1.073 (1.073)	Class 0.6102 (0.6102)	Prec@1 78.125 (78.125)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.110 (0.210)	Data 0.001 (0.098)	Class 1.6517 (0.8641)	Prec@1 40.234 (70.632)	Prec@5 93.750 (97.745)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.275 (1.275)	Data 1.157 (1.157)	Class 0.5586 (0.5586)	Prec@1 80.078 (80.078)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.106 (0.210)	Data 0.001 (0.106)	Class 0.9017 (0.7144)	Prec@1 66.406 (75.497)	Prec@5 98.828 (98.775)
+Evaluating the primary model:
+Test: [0/20]	Time 1.213 (1.213)	Data 1.093 (1.093)	Class 0.7948 (0.7948)	Prec@1 72.266 (72.266)	Prec@5 99.023 (99.023)
+Test: [10/20]	Time 0.139 (0.210)	Data 0.001 (0.100)	Class 1.0925 (0.8176)	Prec@1 61.914 (72.372)	Prec@5 96.289 (97.816)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.181 (1.181)	Data 1.061 (1.061)	Class 0.6317 (0.6317)	Prec@1 77.930 (77.930)	Prec@5 98.828 (98.828)
+Test: [10/20]	Time 0.104 (0.206)	Data 0.001 (0.097)	Class 0.7908 (0.7029)	Prec@1 70.508 (76.190)	Prec@5 99.219 (98.775)
+Evaluating the primary model:
+Test: [0/20]	Time 1.156 (1.156)	Data 1.032 (1.032)	Class 0.8563 (0.8563)	Prec@1 73.633 (73.633)	Prec@5 96.875 (96.875)
+Test: [10/20]	Time 0.103 (0.203)	Data 0.001 (0.094)	Class 1.4364 (0.8593)	Prec@1 52.148 (72.248)	Prec@5 98.047 (98.242)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.308 (1.308)	Data 1.144 (1.144)	Class 0.6358 (0.6358)	Prec@1 79.297 (79.297)	Prec@5 98.828 (98.828)
+Test: [10/20]	Time 0.101 (0.213)	Data 0.001 (0.105)	Class 0.8596 (0.7170)	Prec@1 71.094 (75.799)	Prec@5 99.023 (98.704)
+Evaluating the primary model:
+Test: [0/20]	Time 1.179 (1.179)	Data 1.066 (1.066)	Class 0.7411 (0.7411)	Prec@1 73.828 (73.828)	Prec@5 98.438 (98.438)
+Test: [10/20]	Time 0.101 (0.206)	Data 0.001 (0.097)	Class 0.8183 (0.8034)	Prec@1 73.633 (73.828)	Prec@5 98.828 (98.171)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.186 (1.186)	Data 1.067 (1.067)	Class 0.5632 (0.5632)	Prec@1 81.055 (81.055)	Prec@5 98.633 (98.633)
+Test: [10/20]	Time 0.100 (0.205)	Data 0.001 (0.098)	Class 0.8439 (0.6889)	Prec@1 72.266 (77.379)	Prec@5 98.828 (98.810)
+Evaluating the primary model:
+Test: [0/20]	Time 1.277 (1.277)	Data 1.142 (1.142)	Class 0.7294 (0.7294)	Prec@1 76.172 (76.172)	Prec@5 98.828 (98.828)
+Test: [10/20]	Time 0.105 (0.212)	Data 0.001 (0.105)	Class 1.0626 (0.7886)	Prec@1 63.477 (73.615)	Prec@5 98.047 (98.420)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.212 (1.212)	Data 1.081 (1.081)	Class 0.5706 (0.5706)	Prec@1 81.641 (81.641)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.105 (0.205)	Data 0.001 (0.099)	Class 0.8040 (0.6759)	Prec@1 72.070 (77.823)	Prec@5 98.828 (99.023)
+Evaluating the primary model:
+Test: [0/20]	Time 1.258 (1.258)	Data 1.129 (1.129)	Class 0.4836 (0.4836)	Prec@1 83.789 (83.789)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.102 (0.212)	Data 0.001 (0.103)	Class 1.3462 (0.7584)	Prec@1 51.562 (75.515)	Prec@5 98.633 (98.881)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.206 (1.206)	Data 1.084 (1.084)	Class 0.5365 (0.5365)	Prec@1 83.984 (83.984)	Prec@5 99.023 (99.023)
+Test: [10/20]	Time 0.103 (0.206)	Data 0.001 (0.099)	Class 0.7443 (0.6535)	Prec@1 75.781 (79.102)	Prec@5 99.219 (99.023)
+Evaluating the primary model:
+Test: [0/20]	Time 1.227 (1.227)	Data 1.105 (1.105)	Class 0.7345 (0.7345)	Prec@1 76.367 (76.367)	Prec@5 99.023 (99.023)
+Test: [10/20]	Time 0.106 (0.212)	Data 0.001 (0.101)	Class 1.1033 (0.8030)	Prec@1 64.453 (74.396)	Prec@5 96.875 (98.366)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.177 (1.177)	Data 1.060 (1.060)	Class 0.5017 (0.5017)	Prec@1 83.398 (83.398)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.102 (0.202)	Data 0.001 (0.097)	Class 0.8323 (0.6435)	Prec@1 74.023 (79.759)	Prec@5 99.023 (99.041)
+Evaluating the primary model:
+Test: [0/20]	Time 1.103 (1.103)	Data 0.987 (0.987)	Class 0.5974 (0.5974)	Prec@1 80.273 (80.273)	Prec@5 99.023 (99.023)
+Test: [10/20]	Time 0.107 (0.200)	Data 0.000 (0.091)	Class 1.0248 (0.7350)	Prec@1 68.359 (76.527)	Prec@5 98.242 (98.775)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.109 (1.109)	Data 0.995 (0.995)	Class 0.5069 (0.5069)	Prec@1 83.398 (83.398)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.104 (0.198)	Data 0.001 (0.091)	Class 0.8744 (0.6428)	Prec@1 73.242 (79.723)	Prec@5 99.414 (99.165)
+Evaluating the primary model:
+Test: [0/20]	Time 1.185 (1.185)	Data 1.066 (1.066)	Class 0.4288 (0.4288)	Prec@1 87.109 (87.109)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.103 (0.203)	Data 0.001 (0.098)	Class 0.7440 (0.6789)	Prec@1 76.562 (79.048)	Prec@5 99.219 (98.935)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.264 (1.264)	Data 1.144 (1.144)	Class 0.4869 (0.4869)	Prec@1 84.375 (84.375)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.102 (0.209)	Data 0.001 (0.105)	Class 0.8059 (0.6305)	Prec@1 76.562 (80.522)	Prec@5 99.219 (99.059)
+Evaluating the primary model:
+Test: [0/20]	Time 1.284 (1.284)	Data 1.161 (1.161)	Class 0.6334 (0.6334)	Prec@1 79.883 (79.883)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.108 (0.218)	Data 0.001 (0.106)	Class 0.8885 (0.7531)	Prec@1 74.805 (76.651)	Prec@5 97.266 (98.402)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.248 (1.248)	Data 1.129 (1.129)	Class 0.4965 (0.4965)	Prec@1 84.375 (84.375)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.109 (0.213)	Data 0.001 (0.103)	Class 0.8095 (0.6318)	Prec@1 76.367 (80.327)	Prec@5 98.633 (99.165)
+Evaluating the primary model:
+Test: [0/20]	Time 1.180 (1.180)	Data 1.057 (1.057)	Class 0.6296 (0.6296)	Prec@1 80.859 (80.859)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.104 (0.203)	Data 0.001 (0.097)	Class 0.7106 (0.8069)	Prec@1 78.711 (75.107)	Prec@5 98.047 (97.940)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.267 (1.267)	Data 1.150 (1.150)	Class 0.5339 (0.5339)	Prec@1 84.766 (84.766)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.108 (0.210)	Data 0.001 (0.105)	Class 0.8079 (0.6385)	Prec@1 76.562 (80.522)	Prec@5 98.438 (99.094)
+Evaluating the primary model:
+Test: [0/20]	Time 1.261 (1.261)	Data 1.136 (1.136)	Class 0.3402 (0.3402)	Prec@1 89.258 (89.258)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.103 (0.212)	Data 0.001 (0.104)	Class 0.3788 (0.7312)	Prec@1 86.719 (77.663)	Prec@5 99.414 (98.828)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.268 (1.268)	Data 1.148 (1.148)	Class 0.4450 (0.4450)	Prec@1 85.547 (85.547)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.105 (0.215)	Data 0.001 (0.105)	Class 0.7400 (0.6191)	Prec@1 77.734 (80.824)	Prec@5 98.633 (99.201)
+Evaluating the primary model:
+Test: [0/20]	Time 1.141 (1.141)	Data 1.021 (1.021)	Class 0.5337 (0.5337)	Prec@1 82.617 (82.617)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.107 (0.203)	Data 0.001 (0.094)	Class 1.3411 (0.6057)	Prec@1 58.789 (80.930)	Prec@5 97.266 (99.112)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.243 (1.243)	Data 1.126 (1.126)	Class 0.4805 (0.4805)	Prec@1 85.547 (85.547)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.102 (0.207)	Data 0.001 (0.103)	Class 0.7874 (0.6116)	Prec@1 75.781 (81.587)	Prec@5 99.023 (99.237)
+Evaluating the primary model:
+Test: [0/20]	Time 1.251 (1.251)	Data 1.134 (1.134)	Class 0.5223 (0.5223)	Prec@1 83.789 (83.789)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.101 (0.211)	Data 0.001 (0.104)	Class 1.0374 (0.7803)	Prec@1 70.508 (76.616)	Prec@5 97.070 (98.402)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.180 (1.180)	Data 1.061 (1.061)	Class 0.5050 (0.5050)	Prec@1 84.570 (84.570)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.102 (0.207)	Data 0.001 (0.097)	Class 0.6868 (0.6159)	Prec@1 78.711 (81.534)	Prec@5 99.023 (99.325)
+Evaluating the primary model:
+Test: [0/20]	Time 1.179 (1.179)	Data 1.056 (1.056)	Class 0.7302 (0.7302)	Prec@1 76.953 (76.953)	Prec@5 98.242 (98.242)
+Test: [10/20]	Time 0.114 (0.204)	Data 0.001 (0.097)	Class 0.7058 (0.6344)	Prec@1 76.367 (79.812)	Prec@5 99.805 (99.006)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.285 (1.285)	Data 1.150 (1.150)	Class 0.5119 (0.5119)	Prec@1 83.984 (83.984)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.102 (0.211)	Data 0.001 (0.105)	Class 0.7512 (0.6099)	Prec@1 77.734 (81.907)	Prec@5 98.828 (99.254)
+Evaluating the primary model:
+Test: [0/20]	Time 1.178 (1.178)	Data 1.059 (1.059)	Class 0.4045 (0.4045)	Prec@1 88.086 (88.086)	Prec@5 100.000 (100.000)
+Test: [10/20]	Time 0.107 (0.206)	Data 0.001 (0.097)	Class 0.8346 (0.6534)	Prec@1 78.125 (80.522)	Prec@5 98.047 (98.988)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.272 (1.272)	Data 1.137 (1.137)	Class 0.4647 (0.4647)	Prec@1 84.570 (84.570)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.106 (0.213)	Data 0.001 (0.104)	Class 0.7294 (0.6094)	Prec@1 79.102 (82.120)	Prec@5 99.219 (99.237)
+Evaluating the primary model:
+Test: [0/20]	Time 1.164 (1.164)	Data 1.037 (1.037)	Class 0.8083 (0.8083)	Prec@1 76.953 (76.953)	Prec@5 98.047 (98.047)
+Test: [10/20]	Time 0.102 (0.200)	Data 0.001 (0.095)	Class 0.8686 (0.7253)	Prec@1 71.680 (78.303)	Prec@5 99.023 (98.491)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.172 (1.172)	Data 1.051 (1.051)	Class 0.5060 (0.5060)	Prec@1 84.570 (84.570)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.103 (0.200)	Data 0.001 (0.096)	Class 0.7330 (0.6086)	Prec@1 80.469 (82.564)	Prec@5 99.023 (99.165)
+Evaluating the primary model:
+Test: [0/20]	Time 1.249 (1.249)	Data 1.131 (1.131)	Class 0.4141 (0.4141)	Prec@1 88.281 (88.281)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.113 (0.213)	Data 0.001 (0.103)	Class 1.4920 (0.6821)	Prec@1 55.273 (79.403)	Prec@5 95.703 (98.775)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.191 (1.191)	Data 1.075 (1.075)	Class 0.5096 (0.5096)	Prec@1 84.766 (84.766)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.104 (0.207)	Data 0.001 (0.098)	Class 0.8192 (0.6055)	Prec@1 78.516 (82.564)	Prec@5 98.633 (99.272)
+Evaluating the primary model:
+Test: [0/20]	Time 1.169 (1.169)	Data 1.050 (1.050)	Class 0.4815 (0.4815)	Prec@1 85.938 (85.938)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.105 (0.201)	Data 0.001 (0.096)	Class 0.9712 (0.6742)	Prec@1 71.875 (80.540)	Prec@5 97.852 (98.509)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.279 (1.279)	Data 1.149 (1.149)	Class 0.4671 (0.4671)	Prec@1 85.938 (85.938)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.136 (0.215)	Data 0.001 (0.105)	Class 0.7785 (0.5973)	Prec@1 79.297 (82.795)	Prec@5 99.023 (99.272)
+Evaluating the primary model:
+Test: [0/20]	Time 1.298 (1.298)	Data 1.182 (1.182)	Class 0.3360 (0.3360)	Prec@1 90.625 (90.625)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.104 (0.219)	Data 0.001 (0.108)	Class 1.0041 (0.6465)	Prec@1 71.289 (81.001)	Prec@5 98.633 (99.130)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.293 (1.293)	Data 1.118 (1.118)	Class 0.5148 (0.5148)	Prec@1 86.328 (86.328)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.104 (0.214)	Data 0.001 (0.102)	Class 0.7975 (0.5922)	Prec@1 77.734 (83.327)	Prec@5 99.023 (99.450)
+Evaluating the primary model:
+Test: [0/20]	Time 1.224 (1.224)	Data 1.106 (1.106)	Class 0.5525 (0.5525)	Prec@1 82.617 (82.617)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.139 (0.211)	Data 0.001 (0.101)	Class 1.4171 (0.6142)	Prec@1 56.836 (81.108)	Prec@5 98.828 (99.450)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.271 (1.271)	Data 1.150 (1.150)	Class 0.4607 (0.4607)	Prec@1 87.891 (87.891)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.103 (0.215)	Data 0.001 (0.105)	Class 0.7754 (0.5795)	Prec@1 79.102 (83.647)	Prec@5 99.023 (99.325)
+Evaluating the primary model:
+Test: [0/20]	Time 1.259 (1.259)	Data 1.103 (1.103)	Class 0.5603 (0.5603)	Prec@1 86.133 (86.133)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.114 (0.210)	Data 0.001 (0.101)	Class 1.1906 (0.6419)	Prec@1 66.406 (81.534)	Prec@5 98.047 (99.023)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.275 (1.275)	Data 1.146 (1.146)	Class 0.4521 (0.4521)	Prec@1 88.086 (88.086)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.102 (0.210)	Data 0.001 (0.105)	Class 0.8485 (0.5964)	Prec@1 76.758 (83.487)	Prec@5 99.414 (99.379)
+Evaluating the primary model:
+Test: [0/20]	Time 1.180 (1.180)	Data 1.060 (1.060)	Class 0.3855 (0.3855)	Prec@1 88.672 (88.672)	Prec@5 100.000 (100.000)
+Test: [10/20]	Time 0.104 (0.204)	Data 0.001 (0.097)	Class 0.9999 (0.7921)	Prec@1 71.875 (78.161)	Prec@5 98.242 (98.420)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.268 (1.268)	Data 1.134 (1.134)	Class 0.4276 (0.4276)	Prec@1 87.891 (87.891)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.102 (0.213)	Data 0.001 (0.104)	Class 0.8362 (0.5848)	Prec@1 77.344 (83.594)	Prec@5 99.414 (99.414)
+Evaluating the primary model:
+Test: [0/20]	Time 1.278 (1.278)	Data 1.160 (1.160)	Class 0.7168 (0.7168)	Prec@1 80.273 (80.273)	Prec@5 98.438 (98.438)
+Test: [10/20]	Time 0.104 (0.210)	Data 0.001 (0.106)	Class 0.7573 (0.7407)	Prec@1 79.883 (79.545)	Prec@5 99.609 (98.952)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.264 (1.264)	Data 1.146 (1.146)	Class 0.4963 (0.4963)	Prec@1 84.375 (84.375)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.102 (0.209)	Data 0.001 (0.105)	Class 0.7486 (0.5995)	Prec@1 81.250 (83.381)	Prec@5 99.609 (99.414)
+Evaluating the primary model:
+Test: [0/20]	Time 1.217 (1.217)	Data 1.086 (1.086)	Class 0.5876 (0.5876)	Prec@1 84.570 (84.570)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.102 (0.209)	Data 0.001 (0.099)	Class 0.7231 (0.7845)	Prec@1 80.078 (79.137)	Prec@5 99.023 (98.153)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.190 (1.190)	Data 1.069 (1.069)	Class 0.4513 (0.4513)	Prec@1 87.891 (87.891)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.101 (0.206)	Data 0.001 (0.098)	Class 0.7555 (0.6089)	Prec@1 80.859 (83.487)	Prec@5 99.219 (99.254)
+Evaluating the primary model:
+Test: [0/20]	Time 1.178 (1.178)	Data 1.054 (1.054)	Class 0.7213 (0.7213)	Prec@1 79.883 (79.883)	Prec@5 99.023 (99.023)
+Test: [10/20]	Time 0.108 (0.207)	Data 0.001 (0.096)	Class 0.7858 (0.8429)	Prec@1 78.906 (77.823)	Prec@5 98.828 (98.366)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.295 (1.295)	Data 1.152 (1.152)	Class 0.5216 (0.5216)	Prec@1 86.133 (86.133)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.104 (0.215)	Data 0.001 (0.105)	Class 0.7831 (0.6077)	Prec@1 79.883 (83.576)	Prec@5 99.023 (99.325)
+Evaluating the primary model:
+Test: [0/20]	Time 1.254 (1.254)	Data 1.135 (1.135)	Class 0.7065 (0.7065)	Prec@1 79.688 (79.688)	Prec@5 98.633 (98.633)
+Test: [10/20]	Time 0.108 (0.216)	Data 0.001 (0.104)	Class 0.8147 (0.6585)	Prec@1 76.562 (81.570)	Prec@5 99.219 (99.183)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.266 (1.266)	Data 1.148 (1.148)	Class 0.5400 (0.5400)	Prec@1 85.156 (85.156)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.103 (0.212)	Data 0.001 (0.105)	Class 0.6992 (0.6208)	Prec@1 81.445 (83.345)	Prec@5 99.414 (99.396)
+Evaluating the primary model:
+Test: [0/20]	Time 1.169 (1.169)	Data 1.047 (1.047)	Class 0.5853 (0.5853)	Prec@1 84.961 (84.961)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.105 (0.201)	Data 0.001 (0.096)	Class 0.5347 (0.7780)	Prec@1 84.180 (79.386)	Prec@5 99.805 (99.023)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.268 (1.268)	Data 1.146 (1.146)	Class 0.5300 (0.5300)	Prec@1 86.133 (86.133)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.103 (0.210)	Data 0.001 (0.105)	Class 0.7793 (0.6571)	Prec@1 80.469 (83.363)	Prec@5 99.414 (99.272)
+Evaluating the primary model:
+Test: [0/20]	Time 1.257 (1.257)	Data 1.140 (1.140)	Class 0.8645 (0.8645)	Prec@1 78.125 (78.125)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.103 (0.212)	Data 0.001 (0.104)	Class 0.6952 (0.8191)	Prec@1 81.445 (79.421)	Prec@5 99.414 (99.148)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.273 (1.273)	Data 1.153 (1.153)	Class 0.5571 (0.5571)	Prec@1 86.328 (86.328)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.101 (0.214)	Data 0.001 (0.106)	Class 0.8118 (0.6399)	Prec@1 81.836 (84.126)	Prec@5 99.219 (99.396)
+Evaluating the primary model:
+Test: [0/20]	Time 1.159 (1.159)	Data 1.041 (1.041)	Class 0.9734 (0.9734)	Prec@1 73.438 (73.438)	Prec@5 97.266 (97.266)
+Test: [10/20]	Time 0.102 (0.201)	Data 0.001 (0.095)	Class 0.9622 (0.7210)	Prec@1 74.609 (80.362)	Prec@5 99.023 (98.935)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.274 (1.274)	Data 1.157 (1.157)	Class 0.5388 (0.5388)	Prec@1 86.914 (86.914)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.103 (0.210)	Data 0.001 (0.106)	Class 0.7774 (0.6328)	Prec@1 82.812 (84.393)	Prec@5 99.219 (99.450)
+Evaluating the primary model:
+Test: [0/20]	Time 1.282 (1.282)	Data 1.161 (1.161)	Class 0.4877 (0.4877)	Prec@1 86.523 (86.523)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.104 (0.218)	Data 0.001 (0.106)	Class 1.1201 (0.8075)	Prec@1 70.508 (79.883)	Prec@5 97.266 (98.544)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.293 (1.293)	Data 1.160 (1.160)	Class 0.4694 (0.4694)	Prec@1 87.891 (87.891)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.105 (0.215)	Data 0.001 (0.106)	Class 0.8188 (0.6217)	Prec@1 80.273 (84.322)	Prec@5 99.219 (99.414)
+Evaluating the primary model:
+Test: [0/20]	Time 1.175 (1.175)	Data 1.057 (1.057)	Class 0.3785 (0.3785)	Prec@1 90.039 (90.039)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.112 (0.207)	Data 0.001 (0.097)	Class 1.0275 (0.7262)	Prec@1 72.461 (80.700)	Prec@5 98.633 (99.059)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.206 (1.206)	Data 1.078 (1.078)	Class 0.5065 (0.5065)	Prec@1 86.914 (86.914)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.111 (0.210)	Data 0.001 (0.099)	Class 0.8588 (0.6403)	Prec@1 79.297 (84.073)	Prec@5 99.219 (99.343)
+Evaluating the primary model:
+Test: [0/20]	Time 1.030 (1.030)	Data 0.922 (0.922)	Class 0.7851 (0.7851)	Prec@1 82.617 (82.617)	Prec@5 98.047 (98.047)
+Test: [10/20]	Time 0.102 (0.191)	Data 0.001 (0.085)	Class 0.5681 (0.7860)	Prec@1 83.984 (80.327)	Prec@5 99.609 (98.846)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.367 (1.367)	Data 1.225 (1.225)	Class 0.4730 (0.4730)	Prec@1 88.672 (88.672)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.108 (0.223)	Data 0.001 (0.112)	Class 0.8672 (0.6410)	Prec@1 76.953 (83.949)	Prec@5 99.023 (99.308)
+Evaluating the primary model:
+Test: [0/20]	Time 1.197 (1.197)	Data 1.066 (1.066)	Class 0.5490 (0.5490)	Prec@1 86.133 (86.133)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.138 (0.206)	Data 0.001 (0.098)	Class 0.7109 (0.8156)	Prec@1 78.125 (78.178)	Prec@5 99.609 (99.130)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.257 (1.257)	Data 1.139 (1.139)	Class 0.4706 (0.4706)	Prec@1 88.672 (88.672)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.106 (0.212)	Data 0.001 (0.104)	Class 0.7755 (0.6350)	Prec@1 80.664 (84.446)	Prec@5 99.414 (99.308)
+Evaluating the primary model:
+Test: [0/20]	Time 1.213 (1.213)	Data 1.103 (1.103)	Class 1.3995 (1.3995)	Prec@1 72.656 (72.656)	Prec@5 97.656 (97.656)
+Test: [10/20]	Time 0.103 (0.207)	Data 0.001 (0.101)	Class 0.8128 (1.0030)	Prec@1 80.273 (77.308)	Prec@5 99.609 (98.562)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.320 (1.320)	Data 1.152 (1.152)	Class 0.5344 (0.5344)	Prec@1 86.719 (86.719)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.103 (0.214)	Data 0.001 (0.105)	Class 0.8563 (0.6505)	Prec@1 79.883 (84.251)	Prec@5 99.609 (99.343)
+Evaluating the primary model:
+Test: [0/20]	Time 1.259 (1.259)	Data 1.131 (1.131)	Class 0.8013 (0.8013)	Prec@1 81.055 (81.055)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.104 (0.208)	Data 0.001 (0.104)	Class 0.9629 (0.6988)	Prec@1 74.805 (81.694)	Prec@5 98.633 (99.290)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.183 (1.183)	Data 1.060 (1.060)	Class 0.5383 (0.5383)	Prec@1 86.133 (86.133)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.102 (0.205)	Data 0.000 (0.097)	Class 0.8189 (0.6716)	Prec@1 81.445 (83.825)	Prec@5 99.023 (99.290)
+Evaluating the primary model:
+Test: [0/20]	Time 1.261 (1.261)	Data 1.141 (1.141)	Class 0.8579 (0.8579)	Prec@1 79.883 (79.883)	Prec@5 98.828 (98.828)
+Test: [10/20]	Time 0.102 (0.212)	Data 0.001 (0.104)	Class 1.3118 (0.7561)	Prec@1 67.578 (80.948)	Prec@5 99.023 (99.325)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.337 (1.337)	Data 1.183 (1.183)	Class 0.5191 (0.5191)	Prec@1 87.891 (87.891)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.105 (0.218)	Data 0.001 (0.108)	Class 0.8418 (0.6488)	Prec@1 80.469 (84.499)	Prec@5 99.414 (99.432)
+Evaluating the primary model:
+Test: [0/20]	Time 1.173 (1.173)	Data 1.048 (1.048)	Class 0.6894 (0.6894)	Prec@1 83.789 (83.789)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.153 (0.209)	Data 0.001 (0.096)	Class 1.1044 (0.9191)	Prec@1 71.484 (78.356)	Prec@5 98.438 (98.473)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.195 (1.195)	Data 1.075 (1.075)	Class 0.5301 (0.5301)	Prec@1 87.305 (87.305)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.103 (0.207)	Data 0.001 (0.098)	Class 0.8833 (0.6533)	Prec@1 79.688 (84.606)	Prec@5 99.414 (99.414)
+Evaluating the primary model:
+Test: [0/20]	Time 1.185 (1.185)	Data 1.067 (1.067)	Class 0.7399 (0.7399)	Prec@1 82.227 (82.227)	Prec@5 98.633 (98.633)
+Test: [10/20]	Time 0.107 (0.208)	Data 0.001 (0.098)	Class 1.0843 (0.7987)	Prec@1 73.633 (81.232)	Prec@5 98.828 (99.041)
+Evaluating the EMA model:
+Test: [0/20]	Time 0.967 (0.967)	Data 0.859 (0.859)	Class 0.5657 (0.5657)	Prec@1 86.914 (86.914)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.098 (0.180)	Data 0.000 (0.079)	Class 0.8678 (0.6618)	Prec@1 80.859 (84.482)	Prec@5 99.219 (99.361)
+Evaluating the primary model:
+Test: [0/20]	Time 1.272 (1.272)	Data 1.146 (1.146)	Class 0.7919 (0.7919)	Prec@1 81.445 (81.445)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.107 (0.218)	Data 0.001 (0.105)	Class 0.4418 (0.9137)	Prec@1 89.648 (78.604)	Prec@5 99.805 (99.450)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.274 (1.274)	Data 1.143 (1.143)	Class 0.5596 (0.5596)	Prec@1 86.133 (86.133)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.104 (0.213)	Data 0.001 (0.105)	Class 0.8989 (0.6820)	Prec@1 81.445 (84.322)	Prec@5 99.023 (99.361)
+Evaluating the primary model:
+Test: [0/20]	Time 1.314 (1.314)	Data 1.147 (1.147)	Class 0.9105 (0.9105)	Prec@1 75.000 (75.000)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.114 (0.215)	Data 0.001 (0.105)	Class 1.0116 (0.7548)	Prec@1 75.195 (80.948)	Prec@5 99.414 (99.130)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.115 (1.115)	Data 1.000 (1.000)	Class 0.6194 (0.6194)	Prec@1 86.914 (86.914)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.098 (0.194)	Data 0.001 (0.092)	Class 1.0570 (0.6952)	Prec@1 79.297 (84.872)	Prec@5 99.023 (99.379)
+Evaluating the primary model:
+Test: [0/20]	Time 1.181 (1.181)	Data 1.052 (1.052)	Class 0.6612 (0.6612)	Prec@1 84.180 (84.180)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.146 (0.206)	Data 0.001 (0.096)	Class 1.4675 (0.9933)	Prec@1 69.531 (78.125)	Prec@5 95.508 (98.580)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.261 (1.261)	Data 1.142 (1.142)	Class 0.6189 (0.6189)	Prec@1 85.938 (85.938)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.103 (0.213)	Data 0.001 (0.104)	Class 0.9464 (0.7106)	Prec@1 80.664 (84.446)	Prec@5 99.023 (99.361)
+Evaluating the primary model:
+Test: [0/20]	Time 1.149 (1.149)	Data 1.000 (1.000)	Class 1.1145 (1.1145)	Prec@1 76.953 (76.953)	Prec@5 98.242 (98.242)
+Test: [10/20]	Time 0.097 (0.196)	Data 0.001 (0.091)	Class 0.7740 (0.9138)	Prec@1 82.617 (79.545)	Prec@5 99.609 (98.952)
+Evaluating the EMA model:
+Test: [0/20]	Time 0.964 (0.964)	Data 0.850 (0.850)	Class 0.5943 (0.5943)	Prec@1 88.086 (88.086)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.106 (0.179)	Data 0.000 (0.078)	Class 0.8744 (0.7148)	Prec@1 81.445 (84.162)	Prec@5 99.414 (99.467)
+Evaluating the primary model:
+Test: [0/20]	Time 1.286 (1.286)	Data 1.162 (1.162)	Class 0.7087 (0.7087)	Prec@1 82.812 (82.812)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.103 (0.220)	Data 0.001 (0.106)	Class 0.9188 (0.7689)	Prec@1 77.930 (80.966)	Prec@5 99.219 (99.183)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.208 (1.208)	Data 1.076 (1.076)	Class 0.6303 (0.6303)	Prec@1 87.305 (87.305)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.102 (0.208)	Data 0.001 (0.098)	Class 0.8652 (0.7174)	Prec@1 83.203 (84.144)	Prec@5 99.023 (99.503)
+Evaluating the primary model:
+Test: [0/20]	Time 1.364 (1.364)	Data 1.210 (1.210)	Class 1.4437 (1.4437)	Prec@1 67.383 (67.383)	Prec@5 96.875 (96.875)
+Test: [10/20]	Time 0.108 (0.223)	Data 0.001 (0.111)	Class 1.2293 (0.7892)	Prec@1 72.656 (81.197)	Prec@5 98.633 (98.917)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.194 (1.194)	Data 1.076 (1.076)	Class 0.6373 (0.6373)	Prec@1 86.133 (86.133)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.104 (0.204)	Data 0.001 (0.098)	Class 0.9057 (0.6979)	Prec@1 81.641 (84.535)	Prec@5 99.414 (99.450)
+Evaluating the primary model:
+Test: [0/20]	Time 1.296 (1.296)	Data 1.165 (1.165)	Class 0.7051 (0.7051)	Prec@1 83.984 (83.984)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.112 (0.218)	Data 0.000 (0.107)	Class 1.3713 (0.7704)	Prec@1 69.141 (81.996)	Prec@5 98.047 (99.237)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.186 (1.186)	Data 1.066 (1.066)	Class 0.5480 (0.5480)	Prec@1 87.109 (87.109)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.102 (0.207)	Data 0.001 (0.098)	Class 0.9323 (0.6984)	Prec@1 81.055 (84.375)	Prec@5 99.219 (99.485)
+Evaluating the primary model:
+Test: [0/20]	Time 1.274 (1.274)	Data 1.148 (1.148)	Class 0.6858 (0.6858)	Prec@1 84.570 (84.570)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.110 (0.217)	Data 0.001 (0.105)	Class 1.2600 (0.9490)	Prec@1 74.609 (80.415)	Prec@5 97.852 (98.704)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.278 (1.278)	Data 1.159 (1.159)	Class 0.5273 (0.5273)	Prec@1 87.305 (87.305)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.105 (0.211)	Data 0.001 (0.106)	Class 0.9843 (0.7117)	Prec@1 81.055 (84.908)	Prec@5 98.633 (99.450)
+Evaluating the primary model:
+Test: [0/20]	Time 1.178 (1.178)	Data 1.059 (1.059)	Class 0.8099 (0.8099)	Prec@1 80.859 (80.859)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.103 (0.206)	Data 0.001 (0.097)	Class 0.9429 (0.8695)	Prec@1 77.930 (80.327)	Prec@5 99.023 (98.935)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.262 (1.262)	Data 1.143 (1.143)	Class 0.5681 (0.5681)	Prec@1 87.891 (87.891)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.107 (0.214)	Data 0.001 (0.105)	Class 0.8745 (0.7304)	Prec@1 83.594 (84.624)	Prec@5 98.828 (99.485)
+Evaluating the primary model:
+Test: [0/20]	Time 1.169 (1.169)	Data 1.049 (1.049)	Class 1.3082 (1.3082)	Prec@1 73.633 (73.633)	Prec@5 96.875 (96.875)
+Test: [10/20]	Time 0.106 (0.201)	Data 0.001 (0.096)	Class 0.9101 (0.8581)	Prec@1 79.883 (80.948)	Prec@5 99.219 (98.970)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.270 (1.270)	Data 1.149 (1.149)	Class 0.5591 (0.5591)	Prec@1 88.281 (88.281)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.103 (0.209)	Data 0.001 (0.105)	Class 0.8293 (0.7353)	Prec@1 83.984 (84.517)	Prec@5 99.609 (99.592)
+Evaluating the primary model:
+Test: [0/20]	Time 1.303 (1.303)	Data 1.177 (1.177)	Class 0.5634 (0.5634)	Prec@1 86.719 (86.719)	Prec@5 99.219 (99.219)
+Test: [10/20]	Time 0.108 (0.221)	Data 0.001 (0.108)	Class 0.9875 (0.7743)	Prec@1 76.758 (81.499)	Prec@5 99.023 (99.325)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.282 (1.282)	Data 1.167 (1.167)	Class 0.4965 (0.4965)	Prec@1 89.453 (89.453)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.105 (0.215)	Data 0.001 (0.107)	Class 0.8769 (0.7057)	Prec@1 82.812 (84.606)	Prec@5 98.828 (99.432)
+Evaluating the primary model:
+Test: [0/20]	Time 1.179 (1.179)	Data 1.059 (1.059)	Class 0.6990 (0.6990)	Prec@1 84.375 (84.375)	Prec@5 98.633 (98.633)
+Test: [10/20]	Time 0.105 (0.201)	Data 0.001 (0.097)	Class 0.9014 (0.9095)	Prec@1 80.664 (79.705)	Prec@5 98.438 (98.491)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.289 (1.289)	Data 1.166 (1.166)	Class 0.5535 (0.5535)	Prec@1 89.062 (89.062)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.104 (0.212)	Data 0.001 (0.107)	Class 0.8608 (0.6948)	Prec@1 82.617 (84.677)	Prec@5 99.023 (99.521)
+Evaluating the primary model:
+Test: [0/20]	Time 1.207 (1.207)	Data 1.083 (1.083)	Class 1.0898 (1.0898)	Prec@1 80.859 (80.859)	Prec@5 98.438 (98.438)
+Test: [10/20]	Time 0.104 (0.207)	Data 0.001 (0.099)	Class 1.0015 (0.9922)	Prec@1 79.492 (79.350)	Prec@5 99.023 (98.722)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.193 (1.193)	Data 1.079 (1.079)	Class 0.5817 (0.5817)	Prec@1 87.695 (87.695)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.102 (0.207)	Data 0.001 (0.099)	Class 0.9703 (0.7232)	Prec@1 81.445 (84.748)	Prec@5 98.828 (99.467)
+Evaluating the primary model:
+Test: [0/20]	Time 1.186 (1.186)	Data 1.060 (1.060)	Class 0.6201 (0.6201)	Prec@1 85.547 (85.547)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.105 (0.204)	Data 0.001 (0.097)	Class 0.7954 (0.9638)	Prec@1 83.203 (79.457)	Prec@5 99.219 (98.775)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.182 (1.182)	Data 1.063 (1.063)	Class 0.6063 (0.6063)	Prec@1 87.500 (87.500)	Prec@5 99.609 (99.609)
+Test: [10/20]	Time 0.102 (0.204)	Data 0.001 (0.097)	Class 0.8810 (0.6912)	Prec@1 83.008 (85.156)	Prec@5 99.219 (99.503)
+Evaluating the primary model:
+Test: [0/20]	Time 1.175 (1.175)	Data 1.051 (1.051)	Class 0.3820 (0.3820)	Prec@1 89.062 (89.062)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.103 (0.206)	Data 0.001 (0.096)	Class 1.0729 (0.7778)	Prec@1 77.930 (81.623)	Prec@5 98.828 (98.881)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.205 (1.205)	Data 1.086 (1.086)	Class 0.5552 (0.5552)	Prec@1 88.086 (88.086)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.102 (0.207)	Data 0.001 (0.099)	Class 0.9924 (0.6985)	Prec@1 81.445 (85.298)	Prec@5 99.414 (99.538)
+Evaluating the primary model:
+Test: [0/20]	Time 1.217 (1.217)	Data 1.098 (1.098)	Class 0.5842 (0.5842)	Prec@1 87.109 (87.109)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.101 (0.204)	Data 0.001 (0.101)	Class 1.2477 (0.8668)	Prec@1 75.391 (81.374)	Prec@5 96.875 (98.970)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.283 (1.283)	Data 1.160 (1.160)	Class 0.6585 (0.6585)	Prec@1 86.328 (86.328)	Prec@5 99.805 (99.805)
+Test: [10/20]	Time 0.102 (0.211)	Data 0.001 (0.106)	Class 1.0490 (0.7224)	Prec@1 80.078 (84.819)	Prec@5 98.633 (99.432)
+Evaluating the primary model:
+Test: [0/20]	Time 1.261 (1.261)	Data 1.137 (1.137)	Class 0.7543 (0.7543)	Prec@1 84.570 (84.570)	Prec@5 99.023 (99.023)
+Test: [10/20]	Time 0.104 (0.212)	Data 0.001 (0.104)	Class 1.6674 (0.8542)	Prec@1 69.727 (81.694)	Prec@5 96.094 (99.006)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.280 (1.280)	Data 1.162 (1.162)	Class 0.5593 (0.5593)	Prec@1 87.891 (87.891)	Prec@5 99.414 (99.414)
+Test: [10/20]	Time 0.109 (0.216)	Data 0.001 (0.106)	Class 1.0301 (0.7168)	Prec@1 80.273 (84.943)	Prec@5 98.633 (99.503)
+Evaluating the primary model:
+Test: [0/20]	Time 1.177 (1.177)	Data 1.052 (1.052)	Class 0.6469 (0.6469)	Prec@1 83.398 (83.398)	Prec@5 98.242 (98.242)
+Test: [10/20]	Time 0.107 (0.208)	Data 0.001 (0.096)	Class 0.7610 (0.7967)	Prec@1 81.836 (81.250)	Prec@5 99.023 (99.077)
+Evaluating the EMA model:
+Test: [0/20]	Time 1.284 (1.284)	Data 1.163 (1.163)	Class 0.5922 (0.5922)	Prec@1 86.719 (86.719)	Prec@5 100.000 (100.000)
+Test: [10/20]	Time 0.143 (0.220)	Data 0.001 (0.106)	Class 0.9158 (0.7507)	Prec@1 83.594 (84.180)	Prec@5 98.828 (99.450)
