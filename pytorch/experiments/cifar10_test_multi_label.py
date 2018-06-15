@@ -43,6 +43,7 @@ def parameters():
         'lr_rampup': 0,
         'base_lr': 0.05,
         'nesterov': True,
+        'exclude_unlabeled': True
     }
 
     # 4000 labels:
@@ -78,7 +79,7 @@ def run(title, base_batch_size, base_labeled_batch_size, base_lr, n_labels, data
 
     adapted_args = {
         'batch_size': base_batch_size * ngpu,
-        'labeled_batch_size': base_labeled_batch_size * ngpu,
+        #'labeled_batch_size': base_labeled_batch_size * ngpu,
         'lr': base_lr * ngpu,
         'labels': 'data-local/labels/cifar10/{}_balanced_labels/{:02d}.txt'.format(n_labels, data_seed),
     }

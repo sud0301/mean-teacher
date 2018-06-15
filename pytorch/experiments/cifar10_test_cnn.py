@@ -25,8 +25,8 @@ def parameters():
         'eval_subdir': 'test',
 
         # Data sampling
-        'base_batch_size': 128,
-        'base_labeled_batch_size': 31,
+        'base_batch_size': 64,
+        'base_labeled_batch_size': 15,
 
         # Architecture
         #'arch': 'cifar_shakeshake26',
@@ -38,11 +38,11 @@ def parameters():
         'consistency': 10.0,
         'logit_distance_cost': -0.00025,
         'weight_decay': 2e-4,
-        'percent': 0.3,
+        #'percent': 0.3,
 
         # Optimization
         'lr_rampup': 0,
-        'base_lr': 0.005,
+        'base_lr': 0.05,
         'nesterov': True,
         #'exclude_unlabeled': True,
     }

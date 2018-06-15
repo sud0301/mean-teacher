@@ -25,12 +25,13 @@ def parameters():
         'eval_subdir': 'test',
 
         # Data sampling
-        'base_batch_size': 32,
-        'base_labeled_batch_size': 7,
+        'base_batch_size': 64,
+        'base_labeled_batch_size': 15,
 
         # Architecture
         #'arch': 'cifar_shakeshake26',
         'arch': 'resnext101',
+        #'arch': 'resnet18',
 
         # Costs
         'consistency_type': 'mse',
@@ -43,7 +44,7 @@ def parameters():
         'lr_rampup': 0,
         'base_lr': 0.05,
         'nesterov': True,
-        'exclude_unlabeled': True,
+        #'exclude_unlabeled': True,
     }
 
     # 4000 labels:
@@ -79,7 +80,7 @@ def run(title, base_batch_size, base_labeled_batch_size, base_lr, n_labels, data
 
     adapted_args = {
         'batch_size': base_batch_size * ngpu,
-        #'labeled_batch_size': base_labeled_batch_size * ngpu,
+        'labeled_batch_size': base_labeled_batch_size * ngpu,
         'lr': base_lr * ngpu,
         'labels': 'data-local/labels/cifar10/{}_balanced_labels/{:02d}.txt'.format(n_labels, data_seed),
     }
