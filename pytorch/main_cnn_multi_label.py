@@ -78,24 +78,25 @@ def main(context):
         #torch.load('resnext_101_64x4d.pth')['state_dict']       
         #model = torch.nn.DataParallel(model).cuda()
         model.cuda()
-       
+
+               
         model_factory = architectures.__dict__[args.arch]
         model_params = dict(pretrained=args.pretrained, num_classes=num_classes)
         model = model_factory(**model_params)
-        #model = nn.DataParallel(model).cuda()
-        model.cuda()
-        '''
-        '''
+        model = nn.DataParallel(model).cuda()
+        #model.cuda()
+        
+        
         #model_name = 'resnext50_32x4d'
-        '''
-        ''' 
+        
+         
         #model_name = 'resnext101_64x4d'
-        '''
+        ''' 
         model_name = 'resnet18'
-        model = pretrainedmodels.__dict__[model_name](num_classes=1000, pretrained='imagenet')
+        model = pretrainedmodels.__dict__[model_name](num_classes=1000, pretrained=None)
         model.last_linear = nn.Sequential(nn.Linear(512, 20), nn.Sigmoid())
         model = torch.nn.DataParallel(model).cuda()
-        ''' 
+        '''
         model = resnet18(pretrained=True)
         model = torch.nn.DataParallel(model, device_ids=range(torch.cuda.device_count()))
         cudnn.benchmark = True
@@ -109,6 +110,7 @@ def main(context):
         if ema:
             for param in model.parameters():
                 param.detach_()
+
 
         return model
 
@@ -145,10 +147,10 @@ def main(context):
 
     if args.evaluate:
         LOG.info("Evaluating the primary model:")
-        print ("Evaluating the primary model:")
+        #print ("Evaluating the primary model:")
         validate(eval_loader, model, validation_log, global_step, args.start_epoch)
         LOG.info("Evaluating the EMA model:")
-        print ("Evaluating the EMA model:")
+        #print ("Evaluating the EMA model:")
         validate(eval_loader, ema_model, ema_validation_log, global_step, args.start_epoch)
         return
 
@@ -161,10 +163,10 @@ def main(context):
         if args.evaluation_epochs and (epoch + 1) % args.evaluation_epochs == 0:
             start_time = time.time()
             LOG.info("Evaluating the primary model:")
-            print ("Evaluating the primary model:")
+            #print ("Evaluating the primary model:")
             prec1 = validate(eval_loader, model, validation_log, global_step, epoch + 1)
             LOG.info("Evaluating the EMA model:")
-            print ("Evaluating the EMA model:")
+            #print ("Evaluating the EMA model:")
             ema_prec1 = validate(eval_loader, ema_model, ema_validation_log, global_step, epoch + 1)
             LOG.info("--- validation in %s seconds ---" % (time.time() - start_time))
             is_best = ema_prec1 > best_prec1
@@ -202,7 +204,14 @@ def parse_dict_args(**kwargs):
 
 
 def create_data_loaders():
-   
+    
+    transform_test = transforms.Compose([
+        transforms.Resize(size=(224, 224), interpolation=2),
+        transforms.ToTensor(),
+        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+    ])
+    
+    '''   
     transform_train = transforms.Compose([
         transforms.RandomRotation(10),
         transforms.RandomResizedCrop(224),
@@ -211,7 +220,8 @@ def create_data_loaders():
         transforms.ToTensor(),
         transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),  # taken from imagenet, find out real values for pascal VOC 2012
     ])
-    ''' 
+    '''
+     
     transform_train = transforms.Compose([
         transforms.Resize(size=(224, 224), interpolation=2),
         transforms.RandomCrop(224, padding=4),
@@ -219,15 +229,17 @@ def create_data_loaders():
         transforms.ToTensor(),
         transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
     ])
+    
     '''
     transform_test = transforms.Compose([
         transforms.Resize(size=(224, 224), interpolation=2),
         transforms.ToTensor(),
         transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
-    ])
+    ])'''
     
     assert_exactly_one([args.exclude_unlabeled, args.labeled_batch_size])
-    '''
+   
+    ''' 
     dataset = dataset_processing.DatasetProcessing(
         DATA_PATH, TRAIN_DATA, TRAIN_IMG_FILE, TRAIN_LABEL_FILE, transform_train)
 
@@ -269,6 +281,7 @@ def create_data_loaders():
     
         
     '''
+    
     datadir = '/misc/lmbraid19/mittal/dense_prediction/forked/mean-teacher/pytorch/dataset/VOC_2012_class/'
     traindir = os.path.join(datadir, args.train_subdir)
     evaldir = os.path.join(datadir, args.eval_subdir)
@@ -278,8 +291,10 @@ def create_data_loaders():
     dataset = torchvision.datasets.ImageFolder(traindir, transform_train)
     dataset, labels = data.change_labels(dataset, DATA_PATH, TRAIN_LABEL_FILE)
      
-    if args.labels:
-        labeled_idxs, unlabeled_idxs = data.relabel_dataset_ml(dataset, labels)
+    #if args.labels:
+    labeled_idxs, unlabeled_idxs, dataset = data.relabel_dataset_ml(dataset, labels, args.percent)
+
+    print (len(labeled_idxs))
 
     if args.exclude_unlabeled:
         sampler = SubsetRandomSampler(labeled_idxs)
@@ -318,8 +333,22 @@ def update_ema_variables(model, ema_model, alpha, global_step):
     for ema_param, param in zip(ema_model.parameters(), model.parameters()):
         ema_param.data.mul_(alpha).add_(1 - alpha, param.data)
 
+
+def BCE_Loss_1 (criterion, input, target):
+    count = 0
+    for i in range(input.size(0)):
+        if target.data[i][0] == -1:
+            target.data[i] = input.data[i]
+        else:
+            count +=1
+    
+        #print ('input: ',input.data[i])
+        #print ('target: ', target.data[i])
+    
+    return criterion(input, target) 
+
 def BCE_Loss (input, target):
-    #loss = -1*target*torch.log(input) - (1-target)*torch.log((1-input))
+
     loss = 0.0
     count = 0
     for i in range(input.size(0)):
@@ -327,42 +356,20 @@ def BCE_Loss (input, target):
             continue
         else:
             for j in range (input.size(1)):
-                if target.data[i][j] == 1:
-                    loss += - torch.log(input[i][j] + 0.001)
-                else:
-                    loss += - torch.log(1.0-input[i][j]+ 0.001)
+                loss -=  target[i][j]*torch.log(input[i][j] + 1e-12) + (1-target[i][j])*torch.log(1.0-input[i][j] + 1e-12)
+        
             count += 1
     bce_loss = loss/ count
     return bce_loss
 
 
-def SigmoidCELoss (input, target):
-    max_val = (-input).clamp(min=0)
-    loss = input - input * target + max_val + ((-max_val).exp() + (-input - max_val).exp()).log()
-    bce_loss = loss.sum()/input.size(0)
-    print (bce_loss)
-    return bce_loss
-
-
-def SigmoidCE_Loss(logits, labels, ignore_index=NO_LABEL):
-    #max(x, 0) - x * z + log(1 + exp(-abs(x)))
-    zeros = Variable(torch.zeros(logits.size()).cuda())
-    t_a = torch.max(logits, zeros) 
-    t_b = torch.mul(logits, labels) 
-    #ones = torch.ones(logits.size(0))*-1 
-    t_c = torch.log(1 + torch.exp(-torch.abs(logits)))
-    loss = t_a - t_b + t_c
-    bce_loss = loss.sum()/logits.size(0)
-    print (bce_loss)
-    return bce_loss
-    #return loss
-    
-
 def train(train_loader, model, ema_model, optimizer, epoch, log):
     global global_step
 
     #class_criterion = nn.CrossEntropyLoss(size_average=False, ignore_index=NO_LABEL).cuda()
-    class_criterion = nn.BCELoss().cuda()
+    class_criterion = nn.BCELoss(size_average=False).cuda()
+    #weights = torch.ones(args.batch_size, 20)*0.2
+    #class_criterion = nn.BCEWithLogitsLoss(size_average=False).cuda()
     
     if args.consistency_type == 'mse':
         consistency_criterion = losses.softmax_mse_loss
@@ -379,27 +386,30 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
     ema_model.train()
 
     end = time.time()
-    #print ('lr: ', optimizer.param_groups[0]['lr'])
+    
     for i, ((inputs), target) in enumerate(train_loader):
-        #print (inputs.size())
+       
+        ''' 
+        scale = torch.ones(args.batch_size, 20)*0.2
+        scale = scale.type(torch.LongTensor)
+        
+        weights = target*scale
+        #print (weights) 
+        weights = weights.type(torch.FloatTensor).cuda()
+        class_criterion.weight = weights       
+        '''
         ema_input = inputs
         labeled_batch_idxs = []
    
-        ''' 
-        for idx in range(target.size(0)):
-            if NO_LABEL != target[idx][0]:
-                labeled_batch_idxs.append(idx)
-        '''
-            
         # measure data loading time
         meters.update('data_time', time.time() - end)
 
         adjust_learning_rate(optimizer, epoch, i, len(train_loader))
         meters.update('lr', optimizer.param_groups[0]['lr'])
 
-        input_var = torch.autograd.Variable(inputs)
-        ema_input_var = torch.autograd.Variable(ema_input, volatile=True)
-        target_var = torch.autograd.Variable(target.cuda(async=True))
+        input_var = Variable(inputs.cuda())
+        ema_input_var = Variable(ema_input.cuda(), volatile=True)
+        target_var = Variable(target.cuda(async=True))
 
         minibatch_size = len(target_var)
         labeled_minibatch_size = target_var.data.ne(NO_LABEL).sum()
@@ -430,50 +440,18 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
             class_logit, cons_logit = logit1, logit1
             res_loss = 0
         
-        #class_logit.type() 
-        #class_logit = class_logit.type(torch.FloatTensor)
-        #target_var = target_var.type(torch.FloatTensor)
-    
-        #labeled_class_logit = torch.randn(len(labeled_batch_idxs), 20, dtype=torch.float)
-        #labeled_target_var = torch.randn(len(labeled_batch_idxs), 20, dtype=torch.float)
-       
          
-        #labeled_class_logit = torch.zeros([len(labeled_batch_idxs), 20])   
-        #labeled_target_var = torch.zeros([len(labeled_batch_idxs), 20])   
-
-        '''
-        for k, idx in enumerate(labeled_batch_idxs):
-            labeled_class_logit[k] = class_logit.data[idx]
-            labeled_target_var[k] = target_var.data[idx]
-            
-        labeled_class_logit = Variable(labeled_class_logit.cuda())         
-        labeled_target_var = Variable(labeled_target_var.cuda()) 
-        '''
-        #print (labeled_batch_idxs)
-        #print (labeled_class_logit.data[0])
-        #print (class_logit.data[0])
-
-        #labeled_target_var = labeled_target_var.type(torch.FloatTensor).cuda()
-        #class_loss = class_criterion(labeled_class_logit, labeled_target_var) 
-        
         target_var = target_var.type(torch.FloatTensor).cuda()
-        #class_loss = class_criterion(class_logit, target_var) 
-        class_loss = BCE_Loss(class_logit, target_var)
-        #print (class_loss)
-        #class_loss = SigmoidCE_Loss(class_logit, target_var)
-        #class_loss = SigmoidCELoss(class_logit, target_var)
+        class_loss = BCE_Loss_1(class_criterion, class_logit, target_var)/minibatch_size 
          
         meters.update('class_loss', class_loss.data[0])
         
         ema_logit.cuda()
         
-        ema_class_loss = class_criterion(ema_logit, target_var) 
-        meters.update('ema_class_loss', ema_class_loss.data[0])
-
         if args.consistency:
             consistency_weight = get_current_consistency_weight(epoch)
             meters.update('cons_weight', consistency_weight)
-            consistency_loss = consistency_weight * consistency_criterion(cons_logit, ema_logit) / minibatch_size
+            consistency_loss = consistency_weight * consistency_criterion(cons_logit, ema_logit)/minibatch_size 
             meters.update('cons_loss', consistency_loss.data[0])
         else:
             consistency_loss = 0
@@ -481,19 +459,15 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
 
         loss = class_loss + consistency_loss #+ res_loss
         assert not (np.isnan(loss.data[0]) or loss.data[0] > 1e5), 'Loss explosion: {}'.format(loss.data[0])
-        meters.update('loss', loss.data[0])
+        #meters.update('loss', loss.data[0])
 
         prec1 = accuracy(class_logit.data, target_var.data, topk=(1,))
         meters.update('top1', prec1, labeled_minibatch_size)
         meters.update('error1', 100. - prec1, labeled_minibatch_size)
-        #meters.update('top5', prec5[0], labeled_minibatch_size)
-        #meters.update('error5', 100. - prec5[0], labeled_minibatch_size)
 
         ema_prec1 = accuracy(ema_logit.data, target_var.data, topk=(1,))
         meters.update('ema_top1', ema_prec1, labeled_minibatch_size)
         meters.update('ema_error1', 100. - ema_prec1, labeled_minibatch_size)
-        #meters.update('ema_top5', ema_prec5[0], labeled_minibatch_size)
-        #meters.update('ema_error5', 100. - ema_prec5[0], labeled_minibatch_size)
         
         # compute gradient and do SGD step
         optimizer.zero_grad()
@@ -523,22 +497,35 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
                 **meters.sums()
             })
         '''
+        if i % args.print_freq == 0:
+            print(
+            'Epoch: [{0}][{1}/{2}]\t'
+            'Time {meters[batch_time]:.3f}\t'
+            'Data {meters[data_time]:.3f}\t'
+            'Class {meters[class_loss]:.4f}\t'
+            'Cons {meters[cons_loss]:.4f}\t'
+            'Prec@1 {meters[top1]:.3f}'.format(
+                epoch, i, len(train_loader), meters=meters))
+        
 
 def validate(eval_loader, model, log, global_step, epoch):
     #class_criterion = nn.CrossEntropyLoss(size_average=False, ignore_index=NO_LABEL).cuda()
+    #class_criterion = nn.BCELoss(size_average=False).cuda()
     class_criterion = nn.BCELoss(size_average=False).cuda()
+    #class_criterion = nn.BCEWithLogitsLoss(size_average=False).cuda()
+    
     meters = AverageMeterSet()
 
     # switch to evaluate mode
     model.eval()
 
     end = time.time()
-    for i, (inputs, target) in enumerate(eval_loader):
+    for i, ((inputs), target) in enumerate(eval_loader):
         
         meters.update('data_time', time.time() - end)
 
-        input_var = torch.autograd.Variable(inputs, volatile=True)
-        target_var = torch.autograd.Variable(target.cuda(async=True), volatile=True)
+        input_var = Variable(inputs.cuda(), volatile=True)
+        target_var = Variable(target.cuda(), volatile=True)
 
         minibatch_size = len(target_var)
         labeled_minibatch_size = target_var.data.ne(NO_LABEL).sum()
@@ -547,21 +534,15 @@ def validate(eval_loader, model, log, global_step, epoch):
 
         # compute output
         output1  = model(input_var)
-        #softmax1 = F.softmax(output1, dim=1)
-        
-        #output1, output2 = model(input_var)
-        #softmax1, softmax2 = F.softmax(output1, dim=1), F.softmax(output2, dim=1)    
     
-        class_loss = class_criterion(output1, target_var) / minibatch_size
-
+        #class_loss = class_criterion(output1, target_var) / minibatch_size
+        class_loss = BCE_Loss_1(class_criterion, output1, target_var)/minibatch_size
+    
         # measure accuracy and record loss
-        #prec1, prec5 = accuracy(output1.data, target_var.data, topk=(1, 5))
         prec1 = accuracy(output1.data, target_var.data, topk=(1,))
         meters.update('class_loss', class_loss.data[0], labeled_minibatch_size)
         meters.update('top1', prec1, labeled_minibatch_size)
         meters.update('error1', 100.0 - prec1, labeled_minibatch_size)
-        #meters.update('top5', prec5[0], labeled_minibatch_size)
-        #meters.update('error5', 100.0 - prec5[0], labeled_minibatch_size)
 
         # measure elapsed time
         meters.update('batch_time', time.time() - end)
@@ -587,7 +568,6 @@ def validate(eval_loader, model, log, global_step, epoch):
                 'Prec@5 {meters[top5]:.3f}'.format(
                     i, len(eval_loader), meters=meters))
             '''
-            print ('Epoch: ', epoch )
             print (
                 'Test: [{0}/{1}]\t'
                 'Time {meters[batch_time]:.3f}\t'
@@ -605,6 +585,8 @@ def validate(eval_loader, model, log, global_step, epoch):
         **meters.sums()
     })
     '''
+    print (' * Prec@1 {top1.avg:.3f}'
+          .format(top1=meters['top1']))
     return meters['top1'].avg
 
 
@@ -686,14 +668,4 @@ def accuracy(outputs, targets, topk=(1,)):
     correct = pred.eq(target.view(1, -1).expand_as(pred))
 
     res = []
-    for k in topk:
-        correct_k = correct[:k].view(-1).float().sum(0, keepdim=True)
-        res.append(correct_k.mul_(100.0 / labeled_minibatch_size))
-    return res
     '''
-
-
-if __name__ == '__main__':
-    logging.basicConfig(level=logging.INFO)
-    args = cli.parse_commandline_args()
-    main(RunContext(__file__, 0))

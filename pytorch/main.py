@@ -22,6 +22,7 @@ from mean_teacher.data import NO_LABEL
 from mean_teacher.utils import *
 
 import pretrainedmodels
+import resnext_101_64x4d 
 
 LOG = logging.getLogger('main')
 
@@ -49,11 +50,30 @@ def main(context):
             ema='EMA ' if ema else '',
             arch=args.arch))
         
+      
+        '''  
         model_factory = architectures.__dict__[args.arch]
         model_params = dict(pretrained=args.pretrained, num_classes=num_classes)
         model = model_factory(**model_params)
         model = nn.DataParallel(model).cuda()
+        '''
+        '''
+        model = resnext_101_64x4d.resnext_101_64x4d
+        #model.load_state_dict(torch.load('resnext_101_64x4d.pth'))
+        removed = list(model.children())[:-1]
+        model = nn.Sequential(*removed)
+        model = nn.Sequential(model, nn.Linear(2048,10), nn.Sigmoid())
+        model = torch.nn.DataParallel(model).cuda()
+        #model.eval()
+        '''
+    
+     
         
+        model_name = 'resnet18'
+        model = pretrainedmodels.__dict__[model_name](num_classes=1000, pretrained=None)
+        model.last_linear = nn.Sequential(nn.Linear(512, 10), nn.Sigmoid())
+        model = torch.nn.DataParallel(model).cuda()
+         
         #model_name = 'resnext50_32x4d'
         ''' 
         model_name = 'resnext101_64x4d'
@@ -227,6 +247,7 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
     end = time.time()
     print ('lr: ', optimizer.param_groups[0]['lr'])
     for i, ((input, ema_input), target) in enumerate(train_loader):
+        ema_input = input
         # measure data loading time
         meters.update('data_time', time.time() - end)
 
@@ -281,7 +302,7 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
             consistency_loss = 0
             meters.update('cons_loss', 0)
 
-        loss = class_loss #+ consistency_loss + res_loss
+        loss = class_loss + consistency_loss #+ res_loss
         assert not (np.isnan(loss.data[0]) or loss.data[0] > 1e5), 'Loss explosion: {}'.format(loss.data[0])
         meters.update('loss', loss.data[0])
 
@@ -346,12 +367,12 @@ def validate(eval_loader, model, log, global_step, epoch):
         meters.update('labeled_minibatch_size', labeled_minibatch_size)
 
         # compute output
-        #output1  = model(input_var)
-        #softmax1 = F.softmax(output1, dim=1)
-        
+        output1  = model(input_var)
+        softmax1 = F.softmax(output1, dim=1)
+        '''
         output1, output2 = model(input_var)
         softmax1, softmax2 = F.softmax(output1, dim=1), F.softmax(output2, dim=1)    
-    
+        '''
         class_loss = class_criterion(output1, target_var) / minibatch_size
 
         # measure accuracy and record loss
@@ -367,6 +388,7 @@ def validate(eval_loader, model, log, global_step, epoch):
         end = time.time()
 
         if i % args.print_freq == 0:
+            '''
             LOG.info(
                 'Test: [{0}/{1}]\t'
                 'Time {meters[batch_time]:.3f}\t'
@@ -375,6 +397,7 @@ def validate(eval_loader, model, log, global_step, epoch):
                 'Prec@1 {meters[top1]:.3f}\t'
                 'Prec@5 {meters[top5]:.3f}'.format(
                     i, len(eval_loader), meters=meters))
+            '''
             print (
                 'Test: [{0}/{1}]\t'
                 'Time {meters[batch_time]:.3f}\t'

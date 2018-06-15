@@ -70,7 +70,8 @@ def main(context):
         '''
         #model_name = 'resnext50_32x4d'
         
-        model_name = 'resnext101_64x4d'
+        #model_name = 'resnext101_64x4d'
+        model_name = 'resnet18'
         model = pretrainedmodels.__dict__[model_name](num_classes=1000, pretrained='imagenet')
         model.last_linear = nn.Sequential( nn.Linear(2048, 10), nn.Sigmoid())
         model.cuda()

@@ -76,7 +76,7 @@ def main(context):
         #model_name = 'inceptionresnetv2'
         model_name = 'resnet18'
         model = pretrainedmodels.__dict__[model_name](num_classes=1000, pretrained=None)
-        model.last_linear = nn.Linear(512, 10)
+        model.last_linear = nn.Sequential(nn.Linear(512, 10), nn.Sigmoid())
         model = torch.nn.DataParallel(model).cuda()
         #cudnn.benchmark = False
         
