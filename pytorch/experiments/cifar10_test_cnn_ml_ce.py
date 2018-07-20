@@ -16,13 +16,14 @@ LOG = logging.getLogger('runner')
 def parameters():
     defaults = {
         # Technical details
-        'workers': 2,
+        'workers': 6,
         'checkpoint_epochs': 20,
 
         # Data
         'dataset': 'cifar10',
-        'train_subdir': 'train',
+        'train_subdir': 'train_10582',
         'eval_subdir': 'val',
+        #'resume': 'results/cifar10_test_cnn_ml_ce/2018-07-01_15:29:39/4000_10/transient/checkpoint.20.ckpt',
 
         # Data sampling
         'base_batch_size': 32,
@@ -31,18 +32,19 @@ def parameters():
         # Architecture
         #'arch': 'cifar_shakeshake26',
         'arch': 'resnext101',
+        'evaluation_epochs' : 1,
 
         # Costs
         'consistency_type': 'mse',
         'consistency_rampup': 5,
-        'consistency': 100.0,
+        'consistency': 1.0,
         'logit_distance_cost': -0.00025,
         'weight_decay': 2e-4,
-        'percent': 0.3,
+        'percent': 0.125,
 
         # Optimization
         'lr_rampup': 0,
-        'base_lr': 0.02,
+        'base_lr': 0.04,
         'nesterov': True,
         #'exclude_unlabeled': True,
     }

@@ -279,29 +279,29 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
         if args.logit_distance_cost >= 0:
             class_logit, cons_logit = logit1, logit2
             res_loss = args.logit_distance_cost * residual_logit_criterion(class_logit, cons_logit) / minibatch_size
-            meters.update('res_loss', res_loss.data[0])
+            meters.update('res_loss', res_loss.item())
         else:
             class_logit, cons_logit = logit1, logit1
             res_loss = 0
          
         class_loss = class_criterion(class_logit, target_var) / minibatch_size
-        meters.update('class_loss', class_loss.data[0])
+        meters.update('class_loss', class_loss.item())
 
         ema_class_loss = class_criterion(ema_logit, target_var) / minibatch_size
-        meters.update('ema_class_loss', ema_class_loss.data[0])
+        meters.update('ema_class_loss', ema_class_loss.item())
 
         if args.consistency:
             consistency_weight = get_current_consistency_weight(epoch)
             meters.update('cons_weight', consistency_weight)
             consistency_loss = consistency_weight * consistency_criterion(cons_logit, ema_logit) / minibatch_size
-            meters.update('cons_loss', consistency_loss.data[0])
+            meters.update('cons_loss', consistency_loss.item())
         else:
             consistency_loss = 0
             meters.update('cons_loss', 0)
 
         loss = class_loss + consistency_loss #+ res_loss
-        assert not (np.isnan(loss.data[0]) or loss.data[0] > 1e5), 'Loss explosion: {}'.format(loss.data[0])
-        meters.update('loss', loss.data[0])
+        assert not (np.isnan(loss.item()) or loss.item() > 1e5), 'Loss explosion: {}'.format(loss.item())
+        meters.update('loss', loss.item())
 
         prec1, prec5 = accuracy(class_logit.data, target_var.data, topk=(1, 5))
         meters.update('top1', prec1[0], labeled_minibatch_size)
@@ -374,7 +374,7 @@ def validate(eval_loader, model, log, global_step, epoch):
 
         # measure accuracy and record loss
         prec1, prec5 = accuracy(output1.data, target_var.data, topk=(1, 5))
-        meters.update('class_loss', class_loss.data[0], labeled_minibatch_size)
+        meters.update('class_loss', class_loss.item(), labeled_minibatch_size)
         meters.update('top1', prec1[0], labeled_minibatch_size)
         meters.update('error1', 100.0 - prec1[0], labeled_minibatch_size)
         meters.update('top5', prec5[0], labeled_minibatch_size)
@@ -458,7 +458,7 @@ def accuracy(output, target, topk=(1,)):
     res = []
     for k in topk:
         correct_k = correct[:k].view(-1).float().sum(0, keepdim=True)
-        res.append(correct_k.mul_(100.0 / labeled_minibatch_size))
+        res.append(correct_k.mul_(100.0 / labeled_minibatch_size.float()))
     return res
 
 

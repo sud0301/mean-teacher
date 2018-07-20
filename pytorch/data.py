@@ -8,7 +8,6 @@ from PIL import Image
 import numpy as np
 from torch.utils.data.sampler import Sampler
 
-import pickle
 
 LOG = logging.getLogger('main')
 NO_LABEL = -1
@@ -120,7 +119,7 @@ def relabel_dataset_ml(dataset, labels, percent):
 
     labeled_indices, unlabeled_indices = indices[mask], indices[~mask]
     '''
-    train_ids = pickle.load(open('train_id.pkl', 'rb'))
+    train_ids = pickle.load(open('../train_id.pkl'))
 
     partial_size = int(percent*len(dataset.imgs))
 

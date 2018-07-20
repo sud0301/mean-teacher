@@ -39,7 +39,7 @@ best_prec1 = 0
 global_step = 0
 
 DATA_PATH = '/misc/lmbraid19/mittal/dense_prediction/forked/mean-teacher/pytorch/dataset/VOC_2012_class/'
-TRAIN_DATA = 'train'
+TRAIN_DATA = 'train_10582/train_all'
 TEST_DATA = 'val'
 TRAIN_IMG_FILE = 'train_img.txt'
 TEST_IMG_FILE = 'val_img.txt'
@@ -61,7 +61,7 @@ def main(context):
     #dataset_config = datasets.__dict__[args.dataset]()
     #num_classes = dataset_config.pop('num_classes')
     #train_loader, eval_loader = create_data_loaders(**dataset_config, args=args)
-    train_loader, eval_loader = create_data_loaders()
+    train_loader, eval_loader, train_eval_loader = create_data_loaders()
     
     def create_model(ema=False):
         LOG.info("=> creating {pretrained}{ema}model '{arch}'".format(
@@ -81,42 +81,21 @@ def main(context):
         #model = torch.nn.DataParallel(model).cuda()
         model.cuda()
 
-               
         model_factory = architectures.__dict__[args.arch]
         model_params = dict(pretrained=args.pretrained, num_classes=num_classes)
         model = model_factory(**model_params)
         model = nn.DataParallel(model).cuda()
         #model.cuda()
         
-        
         #model_name = 'resnext50_32x4d'
-        
-         
         #model_name = 'resnext101_64x4d'
         ''' 
-        model = resnet18(pretrained=True)
+        model = resnet101(pretrained=True)
         model = torch.nn.DataParallel(model, device_ids=range(torch.cuda.device_count()))
         cudnn.benchmark = True
-        model.module.fc = nn.Sequential(*list(model.module.fc.children())[:-1], nn.Linear(512, 21))
+        model.module.fc = nn.Sequential(*list(model.module.fc.children())[:-1], nn.Linear(2048, 21))
         #self.dis.module.fc = nn.Linear(4096, 7)
         model.cuda()
-
-        '''
-        model_name = 'resnet101'
-        model = pretrainedmodels.__dict__[model_name](num_classes=1000, pretrained='imagenet')
-        model.last_linear = nn.Sequential(nn.Linear(2048, 20), nn.Sigmoid())
-        model = torch.nn.DataParallel(model).cuda()
-        '''
-        '''
-        model = resnet18(pretrained=True)
-        model = torch.nn.DataParallel(model, device_ids=range(torch.cuda.device_count()))
-        cudnn.benchmark = True
-        model.module.fc = nn.Sequential(*list(model.module.fc.children())[:-1], nn.Linear(512, 20), nn.Sigmoid())
-        #self.dis.module.fc = nn.Linear(4096, 7)
-        model.cuda()   
-        '''
-        #cudnn.benchmark = False
-        
 
         if ema:
             for param in model.parameters():
@@ -128,7 +107,8 @@ def main(context):
 
     LOG.info(parameters_string(model))
 
-    
+   
+    ''' 
     optimizer = torch.optim.SGD(filter(lambda p: p.requires_grad, model.parameters()), args.lr,
                                 momentum=args.momentum,
                                 weight_decay=args.weight_decay,
@@ -138,7 +118,7 @@ def main(context):
                                 momentum=args.momentum,
                                 weight_decay=args.weight_decay,
                                 nesterov=args.nesterov)
-    ''' 
+     
     # optionally resume from a checkpoint
     if args.resume:
         assert os.path.isfile(args.resume), "=> no checkpoint found at '{}'".format(args.resume)
@@ -153,7 +133,7 @@ def main(context):
         LOG.info("=> loaded checkpoint '{}' (epoch {})".format(args.resume, checkpoint['epoch']))
 
     cudnn.benchmark = True
-
+    '''
     if args.evaluate:
         LOG.info("Evaluating the primary model:")
         #print ("Evaluating the primary model:")
@@ -162,7 +142,7 @@ def main(context):
         #print ("Evaluating the EMA model:")
         validate(eval_loader, ema_model, ema_validation_log, global_step, args.start_epoch)
         return
-
+    '''
     for epoch in range(args.start_epoch, args.epochs):
         start_time = time.time()
         # train for one epoch
@@ -173,10 +153,15 @@ def main(context):
             start_time = time.time()
             LOG.info("Evaluating the primary model:")
             #print ("Evaluating the primary model:")
-            prec1 = validate(eval_loader, model, validation_log, global_step, epoch + 1)
+            prec1 = validate(eval_loader, 'val', model, validation_log, global_step, epoch + 1)
             LOG.info("Evaluating the EMA model:")
             #print ("Evaluating the EMA model:")
-            ema_prec1 = validate(eval_loader, ema_model, ema_validation_log, global_step, epoch + 1)
+            ema_prec1 = validate(eval_loader, 'ema', ema_model, ema_validation_log, global_step, epoch + 1)
+            LOG.info("Evaluating the primary train model:")
+            #print ("Evaluating the primary model:")
+            #prec_train = validate(train_eval_loader, 'trainval', model, validation_log, global_step, epoch + 1)
+            
+    
             LOG.info("--- validation in %s seconds ---" % (time.time() - start_time))
             is_best = ema_prec1 > best_prec1
             best_prec1 = max(ema_prec1, best_prec1)
@@ -213,61 +198,44 @@ def parse_dict_args(**kwargs):
 
 
 def create_data_loaders():
-    '''
-    transform_test = transforms.Compose([
-        transforms.Resize(size=(224, 224), interpolation=2),
-        transforms.ToTensor(),
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
-    ])
-    '''
-    channel_stats = dict(mean=[0.4914, 0.4822, 0.4465],
-                         std=[0.2470,  0.2435,  0.2616])
-    
-    '''
-    transform_train = data.TransformTwice(transforms.Compose([
-        #transforms.RandomCrop(200),
-        #data.RandomTranslateWithReflect(4),
-        transforms.RandomHorizontalFlip(),
-        transforms.Resize(224),
-        transforms.ToTensor(),
-        transforms.Normalize(**channel_stats)
-    ]))
-    '''
+    channel_stats = dict(mean=[.485, .456, .406],
+                         std=[.229, .224, .225])
+
     #transform_train = transforms.Compose([
     transform_train = data.TransformTwice(transforms.Compose([
-        transforms.RandomRotation(10),
+        #transforms.Resize(224),
+        #data.RandomTranslateWithReflect(4),
+        #transforms.RandomRotation(10),
+        transforms.Resize(size=(224, 224), interpolation=2),
+        #transforms.RandomResizedCrop(224, scale =(0.8, 1.2)),
+        transforms.RandomCrop(224, padding=8),
+        transforms.RandomHorizontalFlip(),
+        #transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.1),
+        transforms.ToTensor(),
+        #transforms.RandomHorizontalFlip(),
+        #transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.1),
+        #transforms.Resize(224),
+        transforms.Normalize(**channel_stats)
+        #transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+    ]))
+
+    '''
+         transforms.RandomRotation(10),
         transforms.RandomResizedCrop(224),
         transforms.RandomHorizontalFlip(),
         transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.1),
         transforms.ToTensor(),
         transforms.Normalize(**channel_stats)
     ]))
+    '''
         
-    
-    ''' 
-    transform_train = transforms.Compose([
-        #transforms.RandomRotation(10),
+    transform_test = transforms.Compose([
         transforms.Resize(size=(224, 224), interpolation=2),
-        transforms.RandomCrop(224, padding=4),
-        transforms.RandomHorizontalFlip(),
-        #transforms.ColorJitter(brightness=0.4, contrast=0.4, saturation=0.4, hue=0.1),
         transforms.ToTensor(),
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+        transforms.Normalize((.485, .456, .406), (.229, .224, .225)),
     ])
-    '''
-    transform_test = transforms.Compose([
-        transforms.Resize(256),
-        transforms.CenterCrop(224),
-        transforms.ToTensor(),
-        transforms.Normalize(**channel_stats)
-    ])
-    ''' 
-    transform_test = transforms.Compose([
-        transforms.Resize(224),
-        transforms.ToTensor(),
-        transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225)),
-    ])
-    '''
+        
+
     assert_exactly_one([args.exclude_unlabeled, args.labeled_batch_size])
    
     ''' 
@@ -320,12 +288,13 @@ def create_data_loaders():
     assert_exactly_one([args.exclude_unlabeled, args.labeled_batch_size])
 
     dataset = torchvision.datasets.ImageFolder(traindir, transform_train)
-    dataset, labels = data.change_labels(dataset, DATA_PATH, TRAIN_LABEL_FILE)
+    dataset, labels = data.change_labels(dataset, DATA_PATH, TRAIN_IMG_FILE)
      
     #if args.labels:
     labeled_idxs, unlabeled_idxs, dataset = data.relabel_dataset_ml(dataset, labels, args.percent)
 
     print (len(labeled_idxs))
+    print (len(unlabeled_idxs))
 
     if args.exclude_unlabeled:
         sampler = SubsetRandomSampler(labeled_idxs)
@@ -341,8 +310,6 @@ def create_data_loaders():
                                                num_workers=args.workers,
                                                pin_memory=True)
     
-    #dataset_test = torchvision.datasets.ImageFolder(evaldir, transform_test)
-    #dataset_test, labels = data.change_labels(dataset_test, DATA_PATH, TEST_LABEL_FILE)
 
     dataset_test = dataset_processing.DatasetProcessing(
         DATA_PATH, TEST_DATA, TEST_IMG_FILE, TEST_LABEL_FILE, transform_test)
@@ -355,7 +322,18 @@ def create_data_loaders():
         pin_memory=True,
         drop_last=False)
     
-    return train_loader, eval_loader
+    dataset = dataset_processing.DatasetProcessing(
+        DATA_PATH, TRAIN_DATA, TRAIN_IMG_FILE, TRAIN_LABEL_FILE, transform_test)
+    
+    train_eval_loader = torch.utils.data.DataLoader(
+        dataset,
+        batch_size=args.batch_size,
+        shuffle=False,
+        num_workers=2 * args.workers,  # Needs images twice as fast
+        pin_memory=True,
+        drop_last=False)
+    
+    return train_loader, eval_loader, train_eval_loader
 
 
 def update_ema_variables(model, ema_model, alpha, global_step):
@@ -365,34 +343,37 @@ def update_ema_variables(model, ema_model, alpha, global_step):
         ema_param.data.mul_(alpha).add_(1 - alpha, param.data)
 
 
-def weighted_binary_cross_entropy(output, target, weights=None):
+def weighted_binary_cross_entropy(output, target):
 
-    norm_weights = [0.05062529, 0.06853885, 0.04242881, 0.05711571, 0.05120719, 0.05711571, 0.03480489, 0.03400783, 0.03010152, 0.06960977, 0.05432958, 0.03681839, 0.06551508, 0.05500031, 0.01007924, 0.05432958, 0.07071469, 0.0479035, 0.053675, 0.05303602, 0.00304305]
+    # including Augmented dataset total 10582 training images
+    #norm_weights = [0.04810572, 0.05631423, 0.04025868, 0.0606461,  0.03975122, 0.07221978, 0.02468032, 0.02824117, 0.02311268, 0.10630102, 0.04630077, 0.02389089, 0.06378061, 0.05768775, 0.0068309, 0.05437236, 0.09460791, 0.04373247, 0.05642619, 0.05005709, 0.0] # based on frequency
+    
+    #norm_weights = [0.04810572, 0.05631423, 0.04025868, 0.0606461,  0.04, 0.07221978, 0.04, 0.04, 0.04, 0.07, 0.04630077, 0.04, 0.06378061, 0.05768775, 0.04, 0.05437236, 0.07, 0.04373247, 0.05642619, 0.05005709, 0.0] # min value 0.02
+    #norm_weights = [0.05062529, 0.06853885, 0.04242881, 0.05711571, 0.05120719, 0.05711571, 0.04480489, 0.04400783, 0.04010152, 0.06960977, 0.05432958, 0.04, 0.06551508, 0.05500031, 0.04, 0.05432958, 0.07071469, 0.0479035, 0.053675, 0.05303602, 0.0] # from pytorch multi label main.py
+
+    #norm_weights = [0.05251095, 0.05438634, 0.04060847, 0.07710469, 0.09371186, 0.03929852, 0.02559357, 0.01296015, 0.04088101, 0.09091449, 0.04545724, 0.01659747, 0.05076059, 0.03955371, 0.0057195 , 0.07251513, 0.08344206, 0.04685593, 0.035831  , 0.07428379, 0.0 ]  # based on area
+
+    #norm_weights = [0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.0]
+    norm_weights = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.0]
+    
+    #norm_weights = [0.05062529, 0.06853885, 0.04242881, 0.05711571, 0.05120719, 0.05711571, 0.03480489, 0.03400783, 0.03010152, 0.06960977, 0.05432958, 0.03681839, 0.06551508, 0.05500031, 0.01007924, 0.05432958, 0.07071469, 0.0479035, 0.053675, 0.05303602, 0.0]
     '''
     weights = [0.95454545, 1.29230769, 0.8, 1.07692308, 0.96551724, 1.07692308, 0.65625, 0.64122137, 0.56756757, 1.3125, 1.02439024, 0.69421488, 1.23529412, 1.03703704, 0.19004525, 1.02439024, 1.33333333, 0.90322581, 1.01204819, 1., 0.05737705]
+    
     '''
     loss = 0.0
-    
+    count = 0
+        
     for i in range(target.size(0)):
         for j in range(target.size(1)):
-            loss += (1-norm_weights[j]) * target[i][j] * torch.log(torch.clamp(output[i][j], min=1e-12, max=1.0)) + \
-                    norm_weights[j] * (1 - target[i][j]) * torch.log(torch.clamp(1 - output[i][j], min=1e-12, max=1.0))
+            if target[i][j] != -1:
+                loss += (1-norm_weights[j]) * target[i][j] * torch.log(torch.clamp(output[i][j], min=1e-12, max=1.0)) + \
+                        norm_weights[j] * (1 - target[i][j]) * torch.log(torch.clamp(1 - output[i][j], min=1e-12, max=1.0))
+                #loss += target[i][j] * torch.log(torch.clamp(output[i][j], min=1e-12, max=1.0)) + \
+                        #(1 - target[i][j]) * torch.log(torch.clamp(1 - output[i][j], min=1e-12, max=1.0))
+                count +=1
 
-    loss = loss / (target.size(0)*target.size(1))
-    '''    
-    
-    if weights is not None:
-        assert len(weights) == 2
-         
-        #loss = weights[1] * (target * torch.log(torch.clamp(output, min=1e-12, max=1.0))) + \
-               #weights[0] * ((1 - target) * torch.log(torch.clamp(1 - output, min=1e-12, max=1.0)))
-        
-        loss = weights[1] * ((1 - output)**4) * (target * torch.log(torch.clamp(output, min=1e-12, max=1.0))) + \
-               weights[0] * (output**4) * ((1 - target) * torch.log(torch.clamp(1 - output, min=1e-12, max=1.0)))
-        
-    else:
-        loss = target * ((1 - output)**2) * torch.log(output + 1e-12) + (1 - target) * (output**2) * torch.log(1 - output + 1e-12)
-    '''
+    loss = loss / count
     
     return torch.neg(loss)
 
@@ -407,30 +388,9 @@ def fm_loss(outputs, targets):
     fm_l = torch.mean(torch.abs(torch.mean(outputs, 0) - torch.mean(targets, 0)))
     return fm_l
 
-def convert_ema_logit_to_target(ema_logit):
-    for i in range(ema_logit.size(0)):
-        for j in range(ema_logit.size(1)): 
-            if ema_logit.data[i][j] > 0.5:   
-                ema_logit.data[i][j] = 1.0
-            else:
-                ema_logit.data[i][j] = 0.0
-    return ema_logit
-
-def weighted_mse_loss(outputs, targets):
-    for i in range(outputs.size(0)):
-        for j in range(outputs.size(1)):
-            if outputs.data[i][j] > 0.5:
-                outputs.data[i][j] = 0.99
-        
-            if targets.data[i][j] > 0.5:
-                targets.data[i][j] = 0.99
-    return outputs, targets
-        
-
 def weigh_the_outputs(outputs):
     w_outputs = 1/(1+ torch.exp(6-12*outputs))
     return w_outputs
-
 
 def BCE_Loss_1 (criterion, input, target):
     count = 0
@@ -452,13 +412,21 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
     #class_criterion = nn.BCELoss(size_average=False).cuda()
     #weights = torch.ones(args.batch_size, 20)*0.2
     #class_criterion = nn.BCEWithLogitsLoss(size_average=False).cuda()
-    
+    '''
+    if epoch%5 == 0: 
+        filename_raw = 'output_train_raw_' + str(epoch) + '.txt'
+        filename_bin = 'output_train_bin_' + str(epoch) + '.txt'
+        f_raw = open(filename_raw, 'a')   
+        f_bin = open(filename_bin, 'a')   
+    '''
     if args.consistency_type == 'mse':
-        consistency_criterion = losses.softmax_mse_loss
+        consistency_criterion = losses.symmetric_mse_loss
+        #consistency_criterion = F.mse_loss(input_softmax, target_softmax, size_average=False) / num_classes
+        #consistency_criterion = losses.softmax_mse_loss
     elif args.consistency_type == 'kl':
         consistency_criterion = losses.softmax_kl_loss
     elif args.consistency_type == 'l1':
-        consistency_criterion = nn.L1Loss()
+        consistency_criterion = nn.L1Loss(size_average=False)
     else:
         assert False, args.consistency_type
     residual_logit_criterion = losses.symmetric_mse_loss
@@ -472,17 +440,7 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
     end = time.time()
     
     for i, ((inputs, ema_input), target) in enumerate(train_loader):
-       
-        ''' 
-        scale = torch.ones(args.batch_size, 20)*0.2
-        scale = scale.type(torch.LongTensor)
-        
-        weights = target*scale
-        #print (weights) 
-        weights = weights.type(torch.FloatTensor).cuda()
-        class_criterion.weight = weights       
-        '''
-        #ema_input = inputs
+
         labeled_batch_idxs = []
    
         # measure data loading time
@@ -504,6 +462,8 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
             ema_model_out, ema_feat = ema_model(ema_input_var)
         model_out, cons_feat= model(input_var)
 
+         
+
         if isinstance(model_out, Variable):
             assert args.logit_distance_cost < 0
             logit1 = model_out
@@ -514,8 +474,17 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
             logit1, logit2 = model_out
             ema_logit, _ = ema_model_out
 
+        '''
+        thres = torch.ones(ema_logit.size(0), 21)*0.5
+        thres = thres.cuda()
+
+        cond = torch.ge(ema_logit, thres)
+        cond = cond.type(torch.FloatTensor).cuda()
+        ema_logit = Variable(cond.detach().data, requires_grad=False)
+        '''
         ema_logit = Variable(ema_logit.detach().data, requires_grad=False)
-    
+        
+ 
         ema_feat = Variable(ema_feat.detach().data, requires_grad=False)
         cons_feat = Variable(cons_feat.detach().data, requires_grad=False)
 
@@ -528,34 +497,25 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
             class_logit, cons_logit = logit1, logit1
             res_loss = 0
         
-        #if epoch>30:
-            #target_var = convert_ema_logit_to_target(ema_logit)
-         
         target_var = target_var.type(torch.FloatTensor).cuda()
-        #class_loss = BCE_Loss_1(class_criterion, class_logit, target_var)/minibatch_size 
-        class_loss = weighted_binary_cross_entropy(class_logit, target_var, [0.1, 0.9])
-        
-        ent_loss = entropy_loss(class_logit)
-        
-        l1_loss = 0.01*l1_penalty(class_logit)
-         
+            
+        class_loss = weighted_binary_cross_entropy(class_logit, target_var)
+        #cons_loss = weighted_binary_cross_entropy(cons_logit, ema_logit)
         meters.update('class_loss', class_loss.item())
-        meters.update('ent_loss', ent_loss.item())
-        meters.update('l1_loss', l1_loss.item())
        
-        #ema_logit_cons = weigh_the_outputs(ema_logit)
-        #cons_logit_cons = weigh_the_outputs(cons_logit)
-        #cons_logit_w, ema_logit_w = weighted_mse_loss(cons_logit, ema_logit)
- 
         ema_logit.cuda()
   
         if args.consistency:
             consistency_weight = get_current_consistency_weight(epoch)
             meters.update('cons_weight', consistency_weight)
-            consistency_loss = consistency_weight * consistency_criterion(cons_logit, ema_logit)/minibatch_size 
+            #consistency_loss = consistency_weight * consistency_criterion(cons_logit, ema_logit)/minibatch_size 
+            #consistency_loss = consistency_weight * F.mse_loss(cons_logit, ema_logit, size_average=False) / (21*minibatch_size)
+            consistency_loss = consistency_weight * torch.sum(((cons_logit - ema_logit)**2)*((ema_logit+1)**3))/ (21*minibatch_size*4) #with scaling towards 1
+            #consistency_loss = consistency_weight * torch.sum((cons_logit - ema_logit)**2)/ (21*minibatch_size)
+            #consistency_loss = consistency_weight * weighted_binary_cross_entropy(cons_logit, ema_logit)
+            #consistency_loss = 0.05 * cons_loss 
             #consistency_loss = consistency_weight * weighted_binary_cross_entropy(cons_logit, ema_logit)
             #consistency_loss = consistency_weight * fm_loss(cons_feat, ema_feat)
-            #print ('cons_loss: ', consistency_loss) 
             meters.update('cons_loss', consistency_loss.item())
         else:
             consistency_loss = 0
@@ -565,13 +525,12 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
         loss = class_loss + consistency_loss #+ l1_loss #+ l1_loss # ent_loss #+ res_loss
     
         assert not (np.isnan(loss.item()) or loss.item() > 1e5), 'Loss explosion: {}'.format(loss.item())
-        #meters.update('loss', loss.data[0])
 
-        prec1, acc_zeros, acc_ones = accuracy(class_logit.data, target_var.data, 'prec1',  topk=(1,))
+        prec1, acc_zeros, acc_ones, acc = accuracy(class_logit.data, target_var.data, 'prec1',  topk=(1,))
         meters.update('top1', prec1, labeled_minibatch_size)
         meters.update('error1', 100. - prec1, labeled_minibatch_size)
 
-        ema_prec1, ema_acc_zeros, ema_acc_ones = accuracy(ema_logit.data, target_var.data, 'ema_prec1', topk=(1,))
+        ema_prec1, ema_acc_zeros, ema_acc_ones, ema_acc = accuracy(ema_logit.data, target_var.data, 'ema_prec1', topk=(1,))
         meters.update('ema_top1', ema_prec1, labeled_minibatch_size)
         meters.update('ema_error1', 100. - ema_prec1, labeled_minibatch_size)
         
@@ -585,45 +544,30 @@ def train(train_loader, model, ema_model, optimizer, epoch, log):
         # measure elapsed time
         meters.update('batch_time', time.time() - end)
         end = time.time()
-        '''
-        if i % args.print_freq == 0:
-            LOG.info(
-                'Epoch: [{0}][{1}/{2}]\t'
-                'Time {meters[batch_time]:.3f}\t'
-                'Data {meters[data_time]:.3f}\t'
-                'Class {meters[class_loss]:.4f}\t'
-                'Entropy {meters[ent_loss]:.4f}\t'
-                'L1 {meters[l1_loss]:.4f}\t'
-                'Cons {meters[cons_loss]:.4f}\t'
-                'Prec@1 {meters[top1]:.3f}\t'
-                'Prec@5 {meters[top5]:.3f}'.format(
-                    epoch, i, len(train_loader), meters=meters))
-            log.record(epoch + i / len(train_loader), {
-                'step': global_step,
-                **meters.values(),
-                **meters.averages(),
-                **meters.sums()
-            })
-        '''
+        
         if i % args.print_freq == 0:
             print(
             'Epoch: [{0}][{1}/{2}]\t'
             'Time {meters[batch_time]:.3f}\t'
             'Data {meters[data_time]:.3f}\t'
             'Class {meters[class_loss]:.4f}\t'
-            'Entropy {meters[ent_loss]:.4f}\t'
-            'L1 {meters[l1_loss]:.4f}\t'
             'Cons {meters[cons_loss]:.6f}\t'
             'Prec@1 {meters[top1]:.3f}'.format(
                 epoch, i, len(train_loader), meters=meters))
-        
 
-def validate(eval_loader, model, log, global_step, epoch):
-    #class_criterion = nn.CrossEntropyLoss(size_average=False, ignore_index=NO_LABEL).cuda()
-    #class_criterion = nn.BCELoss(size_average=False).cuda()
-    #class_criterion = nn.BCELoss(size_average=False).cuda()
-    #class_criterion = nn.BCEWithLogitsLoss(size_average=False).cuda()
-    
+def validate(eval_loader, mode,  model, log, global_step, epoch):
+  
+    if epoch%1 == 0:
+        if mode=='val':
+            filename_raw = 'output_val_17raw_' + str(epoch) + '.txt'
+            filename_bin = 'output_val_17bin_' + str(epoch) + '.txt'
+        if mode == 'ema':
+            filename_raw = 'output_ema_17raw_' + str(epoch) + '.txt'
+            filename_bin = 'output_ema_17bin_' + str(epoch) + '.txt'
+            
+        f_raw = open(filename_raw, 'a')   
+        f_bin = open(filename_bin, 'a')   
+ 
     meters = AverageMeterSet()
 
     # switch to evaluate mode
@@ -646,43 +590,30 @@ def validate(eval_loader, model, log, global_step, epoch):
 
             # compute output
             output1, _  = model(input_var)
-        
-            #class_loss = class_criterion(output1, target_var) / minibatch_size
-            #class_loss = BCE_Loss_1(class_criterion, output1, target_var)/minibatch_size
-            class_loss = weighted_binary_cross_entropy(output1, target_var, [0.1, 0.9])
+   
+            if epoch%1 == 0:
+                output_raw = output1.cpu().numpy()
+                output_raw = np.roll(output_raw, 1)
+                output_bin = (output_raw>0.5)*1
+                np.savetxt(f_raw, output_raw, fmt='%f') 
+                np.savetxt(f_bin, output_bin, fmt='%d') 
+            
+            class_loss = weighted_binary_cross_entropy(output1, target_var)
         
             # measure accuracy and record loss
-            prec1, acc_zeros, acc_ones = accuracy(output1.data, target_var.data, 'test',  topk=(1,))
+            prec1, acc_zeros, acc_ones, acc = accuracy(output1.data, target_var.data, 'test',  topk=(1,))
             meters.update('class_loss', class_loss.item(), labeled_minibatch_size)
             meters.update('top1', prec1, labeled_minibatch_size)
             meters.update('acc_zeros', acc_zeros, labeled_minibatch_size)
             meters.update('acc_ones', acc_ones, labeled_minibatch_size)
+            meters.update('acc', acc, labeled_minibatch_size)
             meters.update('error1', 100.0 - prec1, labeled_minibatch_size)
 
             # measure elapsed time
             meters.update('batch_time', time.time() - end)
             end = time.time()
-
             
             if i % args.print_freq == 0:
-                ''' 
-                LOG.info(
-                    'Test: [{0}/{1}]\t'
-                    'Time {meters[batch_time]:.3f}\t'
-                    'Data {meters[data_time]:.3f}\t'
-                    'Class {meters[class_loss]:.4f}\t'
-                    'Prec@1 {meters[top1]:.3f}\t'
-                    'Prec@5 {meters[top5]:.3f}'.format(
-                        i, len(eval_loader), meters=meters))
-                print (
-                    'Test: [{0}/{1}]\t'
-                    'Time {meters[batch_time]:.3f}\t'
-                    'Data {meters[data_time]:.3f}\t'
-                    'Class {meters[class_loss]:.4f}\t'
-                    'Prec@1 {meters[top1]:.3f}\t'
-                    'Prec@5 {meters[top5]:.3f}'.format(
-                        i, len(eval_loader), meters=meters))
-                '''
                 print (
                     'Test: [{0}/{1}]\t'
                     'Time {meters[batch_time]:.3f}\t'
@@ -690,22 +621,19 @@ def validate(eval_loader, model, log, global_step, epoch):
                     'Class {meters[class_loss]:.4f}\t'
                     'Prec@1 {meters[top1]:.3f}'.format(
                         i, len(eval_loader), meters=meters))
-    '''    
-    LOG.info(' * Prec@1 {top1.avg:.3f}\tPrec@5 {top5.avg:.3f}'
-          .format(top1=meters['top1'], top5=meters['top5']))
-    log.record(epoch, {
-        'step': global_step,
-        **meters.values(),
-        **meters.averages(),
-        **meters.sums()
-    })
-    '''
+    
+    if epoch%1 == 0: 
+        f_raw.close() 
+        f_bin.close() 
+    
     print (' * Prec@1 {top1.avg:.3f}'
           .format(top1=meters['top1']))
     print (' * Acc@zeros {acc_zeros.avg:.3f}'
           .format(acc_zeros=meters['acc_zeros']))
     print (' * Acc@ones {acc_ones.avg:.3f}'
           .format(acc_ones=meters['acc_ones']))
+    print (' * Acc {acc.avg:.3f}'
+          .format(acc=meters['acc']))
     return meters['top1'].avg
 
 
@@ -746,10 +674,8 @@ def accuracy(outputs, targets, phase,  topk=(1,)):
 
     thres = torch.ones(targets.size(0), 21)*0.5
     thres = thres.cuda()
-    #thres = Variable(thres.cuda())
 
     cond = torch.ge(outputs, thres)
-    #targets = targets.type(torch.ByteTensor).cuda()
     
     count_label_ones = 0
     count_label_zeros = 0 
@@ -757,16 +683,7 @@ def accuracy(outputs, targets, phase,  topk=(1,)):
     correct_zeros = 0
     correct = 0
     total = 0  
-    output_zeros = 0
-    output_ones = 0
 
-    for i in range(targets.size(0)):
-        for  j in range(21):
-            if cond[i][j] ==0:
-                output_zeros += 1
-            if cond[i][j] == 1:
-                output_ones += 1
-    
     for i in range(targets.size(0)):
         for  j in range(21):
             if targets[i][j]==0:
@@ -786,24 +703,18 @@ def accuracy(outputs, targets, phase,  topk=(1,)):
                     correct_ones +=1
     total += targets.size(0)*21
 
+    acc = (correct_zeros + correct_ones)*100.0/total
+
     avg_acc = (correct_ones/count_label_ones + correct_zeros/count_label_zeros)*100.0/2.0 
     
     acc_zeros = (100.*correct_zeros/count_label_zeros)
     acc_ones =  (100.*correct_ones/count_label_ones)
+    
+    
     '''
     if phase == 'test': 
         print ('Acc: %.3f%% (%d/%d) | zeros: (%d/%d) | ones: (%d/%d) | Avg Acc: %f | Acc zeros: %3f | Acc Ones: %3f |  Output zeros/ones: (%d/%d)'
                 %  (100.*correct/total, correct, total, correct_zeros, count_label_zeros, correct_ones, count_label_ones, avg_acc, (100.*correct_zeros/count_label_zeros), (100.*correct_ones/count_label_ones), output_zeros, output_ones))
     '''
-    return avg_acc, acc_zeros, acc_ones
+    return avg_acc, acc_zeros, acc_ones, acc
 
-    '''
-    maxk = max(topk)
-    labeled_minibatch_size = max(target.ne(NO_LABEL).sum(), 1e-8)
-
-    _, pred = output.topk(maxk, 1, True, True)
-    pred = pred.t()
-    correct = pred.eq(target.view(1, -1).expand_as(pred))
-
-    res = []
-    '''

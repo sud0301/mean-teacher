@@ -44,4 +44,5 @@ def symmetric_mse_loss(input1, input2):
     """
     assert input1.size() == input2.size()
     num_classes = input1.size()[1]
+    
     return torch.sum((input1 - input2)**2) / num_classes
